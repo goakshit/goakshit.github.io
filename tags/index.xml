@@ -5,6 +5,34 @@
     <link>https://goakshit.github.io/tags/</link>
     <description>Recent content in Tags on Akshit Dhar</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://goakshit.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Thu, 11 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://goakshit.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>deploy</title>
+      <link>https://goakshit.github.io/tags/deploy/</link>
+      <pubDate>Thu, 11 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://goakshit.github.io/tags/deploy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>githubpages</title>
+      <link>https://goakshit.github.io/tags/githubpages/</link>
+      <pubDate>Thu, 11 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://goakshit.github.io/tags/githubpages/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hugo</title>
+      <link>https://goakshit.github.io/tags/hugo/</link>
+      <pubDate>Thu, 11 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://goakshit.github.io/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>
