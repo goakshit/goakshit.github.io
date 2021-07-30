@@ -1,3 +1,8 @@
+[module]
+  [[module.imports]]
+    path = "github.com/monkeyWzr/hugo-theme-cactus"
+    disable=false
+
 archetypeDir           = "archetypes"
 author                 = "Akshit Dhar"
 baseUrl                = "https://goakshit.github.io/"
@@ -8,22 +13,41 @@ contentDir             = "content"
 languageCode           = "en-us"
 layoutDir              = "layouts"
 publishDir             = "public"
-theme                  = "pixyll"
-themesDir              = "themes"
+theme                  = ["hugo-theme-cactus"]
 title                  = "Akshit Dhar"
 enableEmoji            = true
 DefaultContentLanguage = "en"
 
-[Languages]
-[Languages.en]
+[params]
+  colortheme = "white" # dark, light, white, or classic
+  description = "Software Engineer | Go | Microservices | Docker | Kubernetes | Avid Reader"
+  mainSection = "/"
+  mainSectionTitle = "Blog"
+  showAllPostsOnHomePage = true
+
+[[params.social]]
+  name = "github"
+  link = "https://github.com/goakshit"
+
+[[params.social]]
+  name = "email"
+  link = "akshitdhar@live.com"
+
+[[params.social]]
+  name = "linkedin"
+  link = "https://www.linkedin.com/in/dharakshit/"
+
+[[menu.main]]
+name = "Home"
+url = "/"
 weight = 1
 
+[[menu.main]]
+name = "Tags"
+url = "/tags"
+weight = 2
 
-[indexes]
-  category = "categories"
-  tag = "tags"
-
-[params]
-  mainSections = ["post"]
-  twitter_username = "dharakshit"
-  paginate = 5
+[[menu.main]]
+name = "About"
+url = "/about"
+weight = 3

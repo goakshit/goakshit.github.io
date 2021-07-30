@@ -1,0 +1,10 @@
+github.com/jakewies/hugo-theme-codex v1.6.0 h1:lmhGUsuy+EFUyUJXaMIejH5x0OoTVUSQeWpO2eL5fV8=
+github.com/jakewies/hugo-theme-codex v1.6.0/go.mod h1:LCO/RurQJx3sm22XEEcxl9tPOMZe/ZiRKn1n8KfcurE=
+github.com/monkeyWzr/hugo-theme-cactus v0.0.0-20210723075256-7958b191f7bc h1:L/5YbNDvjZVJBytDeWiTyZ6aoa9aYOKKoNpVxJ366hs=
+github.com/monkeyWzr/hugo-theme-cactus v0.0.0-20210723075256-7958b191f7bc/go.mod h1:pelyER/z3wJ0lzJtj5JVIlUfnKJJ/sfe4RYyfQG0E/4=
+github.com/setsevireon/photophobia v0.0.5 h1:NN8Ar3/9MhOWK8Lqxnh87EfqeGNCcduEGCWUqQwEsxE=
+github.com/setsevireon/photophobia v0.0.5/go.mod h1:IZCqmSmQZahg6Jm1S2a3sjWN3C67akbFS0uGaCnniMc=
+github.com/yihui/hugo-xmin v0.0.0-20201016020520-4100270f6fe5 h1:Lfn6z15yfxX1bvD6gNtPFXa8rkkOXmw3S05Ed7NJ6cw=
+github.com/yihui/hugo-xmin v0.0.0-20201016020520-4100270f6fe5/go.mod h1:RiCR4psTF4iydlh4bR9BijKIHmivp7IeBaokx0CvzRA=
+github.com/zwbetz-gh/cupper-hugo-theme v0.0.0-20210729015205-c2914816e161 h1:FvLx91p1JDBFZI0+31eHu0OFDZ3v2o7W1ggQGk6nAy8=
+github.com/zwbetz-gh/cupper-hugo-theme v0.0.0-20210729015205-c2914816e161/go.mod h1:gbFBe9uTDt+0qaDRIuovRHXX+fhV3RuItr55ukQ1Psk=
