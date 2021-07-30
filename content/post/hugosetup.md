@@ -5,8 +5,8 @@ title = "Deploy hugo blog on github pages"
 slug = "hugo github pages"
 tags = ["hugo", "githubpages", "deploy"]
 +++
-
-#### What is Hugo?
+# Deploy hugo blog on github pages
+## What is Hugo?
 > Hugo is a fast and modern static site generator written in Go, and designed to make website creation fun again.
 
 In short, Hugo is a static website generation tool which transforms [markdown](https://en.wikipedia.org/wiki/Markdown) into beautiful web pages. One can get started with hundreds of available themes or even create a new one.
