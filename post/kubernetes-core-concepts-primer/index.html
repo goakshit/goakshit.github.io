@@ -51,7 +51,7 @@
 </header>
 <article class=post itemscope itemtype=http://schema.org/BlogPosting>
 <div class=content itemprop=articleBody>
-<h4 id=what-is-kubernetes>What is Kubernetes?</h4>
+<h2 id=what-is-kubernetes>What is Kubernetes?</h2>
 <blockquote>
 <p>Kubernetes, also known as K8s, is an open-source system for automating deployment, scaling, and management of containerized applications.</p>
 </blockquote>
@@ -64,7 +64,7 @@
 <li><strong>Kubelet</strong>: A component that runs on each node in the cluster. Acts as an agent for kubernetes.</li>
 <li><strong>Container Runtime</strong>: Underlying technology that runs the containers like docker.</li>
 </ul>
-<h4 id=what-is-a-pod>What is a Pod?</h4>
+<h2 id=what-is-a-pod>What is a Pod?</h2>
 <blockquote>
 <p>A pod is a smallest unit of execution in Kubernetes. A pod is a collection of containers that are scheduled onto a node.</p>
 </blockquote>
@@ -77,15 +77,17 @@
 <li>A cluster can have <em>n</em> nodes.</li>
 <li>A pod can have <em>n</em> containers. Normally, a pod should have 1 container.</li>
 </ul>
-<h4 id=kubernetes-yaml>Kubernetes YAML</h4>
-<p>Kubernetes yaml is a file that describes the desired state of the pod, service, replicaset or deployment.</p>
+<h2 id=kubernetes-yaml>Kubernetes YAML</h2>
+<blockquote>
+<p>Kubernetes yaml is a template that describes the desired state of the pod, service, replicaset or deployment.</p>
+</blockquote>
 <p>It follows the following format:</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>&lt;VERSION&gt;</span> <span style=color:#75715e>#Version of the specification</span>
 <span style=color:#f92672>kind</span>: <span style=color:#ae81ff>&lt;KIND&gt;</span> <span style=color:#75715e>#Kind of the object like Deployment, Service, Pod or ReplicaSet.</span>
 <span style=color:#f92672>metadata</span>: <span style=color:#ae81ff>&lt;METADATA&gt;</span> <span style=color:#75715e>#It can have a subfields like name, namespace, labels, annotations etc., whatever is supported by k8s.</span>
 <span style=color:#f92672>spec</span>: <span style=color:#ae81ff>&lt;SPECIFICATION&gt;</span>
-</code></pre></div><h6 id=example-pod-definition-yaml-with-redis-image>Example: Pod definition yaml with redis image:</h6>
-<p>To create the following pod, run <code>kubectl create -f &lt;YAML></code></p>
+</code></pre></div><p><strong>Example</strong>: Pod definition yaml with redis image:
+To create the following pod, run <code>kubectl create -f &lt;YAML></code></p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>v1</span>
 <span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Pod</span>
 <span style=color:#f92672>metadata</span>:
@@ -96,7 +98,13 @@
     <span style=color:#f92672>containers</span>:
         - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>redis</span>
           <span style=color:#f92672>image</span>: <span style=color:#ae81ff>redis</span>
-</code></pre></div>
+</code></pre></div><h2 id=update-a-pod>Update a POD</h2>
+<ul>
+<li>If you are given a pod definition file, edit that file and use it to create a new Pod or update the existing one using <code>kubectl apply -f &lt;FILE></code></li>
+<li>If you are not given a definition file, you may extract the definition to a file using the below command:
+<code>kubectl get pod &lt;pod-name> -o yaml > pod-definition.yaml</code> and then edit the file to make the necessary changes, delete and re-create the pod.
+Use the <code>kubectl edit pod &lt;pod-name></code> command to edit pod properties.</li>
+</ul>
 </div>
 </article>
 <footer id=footer>
