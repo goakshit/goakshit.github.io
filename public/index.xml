@@ -6,7 +6,30 @@
     <language>en-us</language>
     
     
-    <updated>Wed, 10 Feb 2021 00:00:00 UTC</updated>
+    <updated>Thu, 29 Jul 2021 10:16:56 IST</updated>
+    
+    <item>
+      <title>Kubernetes: Core Concepts Primer - Part 1</title>
+      <link>https://goakshit.github.io/post/kubernetes-core-concepts-primer/</link>
+      <pubDate>Thu, 29 Jul 2021 10:16:56 IST</pubDate>
+      
+      <guid>https://goakshit.github.io/post/kubernetes-core-concepts-primer/</guid>
+      <description>What is Kubernetes?  Kubernetes, also known as K8s, is an open-source system for automating deployment, scaling, and management of containerized applications.
+ Componenets of Kubernetes:
+ API Server: Acts as a interface for users, cli, and other services to interact with the k8s system ETCD: Key-Value store that stores the state, metadata etc. Scheduler: A component that distributes work to nodes in the cluster. Controller: Responsible for orchestration of the cluster.</description>
+    </item>
+    
+    <item>
+      <title>Deploy hugo blog on github pages</title>
+      <link>https://goakshit.github.io/post/hugo-github-pages/</link>
+      <pubDate>Thu, 11 Feb 2021 00:00:00 UTC</pubDate>
+      
+      <guid>https://goakshit.github.io/post/hugo-github-pages/</guid>
+      <description>What is Hugo?  Hugo is a fast and modern static site generator written in Go, and designed to make website creation fun again.
+ In short, Hugo is a static website generation tool which transforms markdown into beautiful web pages. One can get started with hundreds of available themes or even create a new one.
+Let&amp;rsquo;s jump right in.
+ First of all, we would need to install Hugo. In macOS, it can be installed through homebrew by running  brew install hugo Once it is installed, we can create a blog by running  hugo new site &amp;lt;BLOG_NAME&amp;gt; Now that the basic blog boilerplate is there, we can serve the blog locally going into blog directory created just now and run  hugo server.</description>
+    </item>
     
     <item>
       <title>About</title>
