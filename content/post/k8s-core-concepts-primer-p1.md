@@ -2,9 +2,10 @@
 title: "Kubernetes: Core Concepts Primer - Part 1"
 date: 2021-07-29T10:16:56+05:30
 slug: "kubernetes core concepts primer"
-tags: ["k8s", "kubernetes", "core", "primer", "part 1"]
+tags: ["kubernetes", "core"]
 draft: false
 ---
+
 ![](/img/k8s-p1.jpeg)
 
 ## What is Kubernetes?
