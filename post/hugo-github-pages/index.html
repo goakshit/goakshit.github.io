@@ -1,0 +1,111 @@
+<!doctype html><html lang>
+<head>
+<link rel=preload href=/lib/font-awesome/webfonts/fa-brands-400.woff2 as=font type=font/woff2 crossorigin=anonymous>
+<link rel=preload href=/lib/font-awesome/webfonts/fa-regular-400.woff2 as=font type=font/woff2 crossorigin=anonymous>
+<link rel=preload href=/lib/font-awesome/webfonts/fa-solid-900.woff2 as=font type=font/woff2 crossorigin=anonymous>
+<link rel=preload href=/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2 as=font type=font/woff2 crossorigin=anonymous>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<title> Deploy hugo blog on github pages | </title>
+<link rel=canonical href=/post/hugo-github-pages/>
+<meta name=description content="Software Engineer | Go | Microservices | Docker | Kubernetes | Avid Reader">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="all,follow">
+<meta name=googlebot content="index,follow,snippet,archive">
+<meta property="og:title" content="Deploy hugo blog on github pages">
+<meta property="og:description" content="What is Hugo?  Hugo is a fast and modern static site generator written in Go, and designed to make website creation fun again.
+ In short, Hugo is a static website generation tool which transforms markdown into beautiful web pages. One can get started with hundreds of available themes or even create a new one.
+Let&rsquo;s jump right in.
+ First of all, we would need to install Hugo. In macOS, it can be installed through homebrew by running  brew install hugo Once it is installed, we can create a blog by running  hugo new site <BLOG_NAME> Now that the basic blog boilerplate is there, we can serve the blog locally going into blog directory created just now and run  hugo server.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="/post/hugo-github-pages/"><meta property="article:section" content="post">
+<meta property="article:published_time" content="2021-02-11T00:00:00+00:00">
+<meta property="article:modified_time" content="2021-02-11T00:00:00+00:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Deploy hugo blog on github pages">
+<meta name=twitter:description content="What is Hugo?  Hugo is a fast and modern static site generator written in Go, and designed to make website creation fun again.
+ In short, Hugo is a static website generation tool which transforms markdown into beautiful web pages. One can get started with hundreds of available themes or even create a new one.
+Let&rsquo;s jump right in.
+ First of all, we would need to install Hugo. In macOS, it can be installed through homebrew by running  brew install hugo Once it is installed, we can create a blog by running  hugo new site <BLOG_NAME> Now that the basic blog boilerplate is there, we can serve the blog locally going into blog directory created just now and run  hugo server.">
+<link rel=stylesheet href=/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js></script>
+<script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script><![endif]-->
+<link rel=icon type=image/png href=images/favicon.ico>
+</head>
+<body class="max-width mx-auto px3 ltr">
+<div class="content index py4">
+<header id=header>
+<a href>
+<div id=logo style=background-image:url(images/logo.png)></div>
+<div id=title>
+<h1></h1>
+</div>
+</a>
+<div id=nav>
+<ul>
+<li class=icon>
+<a href=# aria-label=Menu><i class="fas fa-bars fa-2x" aria-hidden=true></i></a>
+</li>
+<li><a href=/>Home</a></li>
+<li><a href=/tags>Tags</a></li>
+<li><a href=/about>About</a></li>
+</ul>
+</div>
+</header>
+<article class=post itemscope itemtype=http://schema.org/BlogPosting>
+<div class=content itemprop=articleBody>
+<h4 id=what-is-hugo>What is Hugo?</h4>
+<blockquote>
+<p>Hugo is a fast and modern static site generator written in Go, and designed to make website creation fun again.</p>
+</blockquote>
+<p>In short, Hugo is a static website generation tool which transforms <a href=https://en.wikipedia.org/wiki/Markdown>markdown</a> into beautiful web pages. One can get started with hundreds of available themes or even create a new one.</p>
+<p>Let&rsquo;s jump right in.</p>
+<ul>
+<li>First of all, we would need to install Hugo. In macOS, it can be installed through homebrew by running <strong><code> brew install hugo</code></strong></li>
+<li>Once it is installed, we can create a blog by running <strong><code> hugo new site &lt;BLOG_NAME></code></strong></li>
+<li>Now that the basic blog boilerplate is there, we can serve the blog locally going into blog directory created just now and run <strong><code> hugo server</code></strong>. You can open up <strong>localhost:1313</strong> in your browser and you have your blog up and running.</li>
+</ul>
+<p>Now coming to deploying the blog to Github pages.</p>
+<ul>
+<li>We need to create a repository with the name (<strong>&lt;YOUR_GITHUB_USERNAME>.github.io</strong>). While creating a repository, don&rsquo;t add a readme file to it yet and create a repository.</li>
+<li>To deploy the blog, we need to build it. Go to blog directory and run <strong><code> hugo</code></strong>. This will create a <code>public</code> directory or the name that we have configured in <code>config.toml</code> file.</li>
+<li>Now we need to commit files to the repository.</li>
+</ul>
+<pre><code>git add .
+git remote add origin
+git remote add origin https://github.com/&lt;GITHUB_USERNAME&gt;/&lt;GITHUB_USERNAME&gt;.github.io.git
+git commit -m &quot;Initial commit&quot;
+git push origin master
+</code></pre><ul>
+<li>Now that our files are there in the repository&rsquo;s master branch, we need to push the <code>public</code> directory to gh-pages branch for the website to be available. We will create a subtree from the <code>public</code> directory and push the <code>public</code> directory to <code>gh-pages</code> branch.</li>
+</ul>
+<pre><code>git add public &amp;&amp; git commit -m &quot;Initial public subtree commit&quot;
+git subtree push --prefix public origin gh-pages
+</code></pre><ul>
+<li>The last step would be to go-to repository settings and under <code>Github pages</code> section, update the Source to <code>gh-pages</code> branch and save it. Our blog should then be available at <strong>https://&lt;YOUR_GITHUB_USERNAME>.github.io</strong></li>
+<li>We created a subtree with only <code>public</code> directory. So whenever we update the website in future, we will commit the changes in the master branch but for changes to be reflected in the website, we need to update the subtree and push the changes to the gh-pages branch. So, after we build the updated blog using <strong><code>hugo</code></strong> command, we need to run the following command that pushes the updated <code>public</code> directory to <code>gh-pages</code> branch.</li>
+</ul>
+<pre><code>git push origin `git subtree split --prefix public master`:gh-pages --force
+</code></pre><p>You can add themes, about page and so on. All that information is available at <a href=https://gohugo.io/documentation/>hugodocs</a>. Hope it helps someone who wants to deploy a blog in no time. There is an easier way to deploy that involves storing Hugo code in one repository and build files in another. But I didn&rsquo;t want to create two repo for the same.</p>
+<p>You can reach me out on <a href=https://twitter.com/dharakshit>Twitter</a> or write to <a href=mailto:akshitdhar@live.com>me</a></p>
+</div>
+</article>
+<footer id=footer>
+<div class=footer-left>
+Copyright &copy; 2021
+</div>
+<div class=footer-right>
+<nav>
+<ul>
+<li><a href=/>Home</a></li>
+<li><a href=/tags>Tags</a></li>
+<li><a href=/about>About</a></li>
+</ul>
+</nav>
+</div>
+</footer>
+</div>
+</body>
+<link rel=stylesheet href=/lib/font-awesome/css/all.min.css>
+<script src=/lib/jquery/jquery.min.js></script>
+<script src=/js/main.js></script>
+</html>
