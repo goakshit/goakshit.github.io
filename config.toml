@@ -3,28 +3,14 @@
     path = "github.com/monkeyWzr/hugo-theme-cactus"
     disable=false
 
-archetypeDir           = "archetypes"
-author                 = "Akshit Dhar"
-baseUrl                = "https://goakshit.github.io/"
-buildDrafts            = false
-relativeURLs           = true
-canonifyUrls           = true
-contentDir             = "content"
-languageCode           = "en-us"
-layoutDir              = "layouts"
-publishDir             = "public"
-theme                  = ["hugo-theme-cactus"]
-title                  = "Akshit Dhar"
-enableEmoji            = true
-DefaultContentLanguage = "en"
-googleAnalytics        = "G-WSFMC7VYKC"
-
 [params]
   colortheme = "white" # dark, light, white, or classic
   description = "Software Engineer | Go | Microservices | Docker | Kubernetes | Avid Reader"
   mainSection = "/"
   mainSectionTitle = "Blog"
   showAllPostsOnHomePage = true
+  googleAnalytics = "G-WSFMC7VYKC"
+  BaseURL = "https://goakshit.github.io/"
 
 [[params.social]]
   name = "github"
@@ -52,3 +38,12 @@ weight = 2
 name = "About"
 url = "/about"
 weight = 3
+
+buildDrafts            = false
+relativeURLs           = true
+canonifyUrls           = true
+contentDir             = "content"
+languageCode           = "en-us"
+publishDir             = "public"
+theme                  = ["hugo-theme-cactus"]
+DefaultContentLanguage = "en"
