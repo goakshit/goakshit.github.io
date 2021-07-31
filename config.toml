@@ -11,6 +11,7 @@
   showAllPostsOnHomePage = true
   googleAnalytics = "G-WSFMC7VYKC"
   BaseURL = "https://goakshit.github.io/"
+  logo = "https://golang.org/doc/gopher/favicon.svg"
 
 [[params.social]]
   name = "github"
