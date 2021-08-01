@@ -2,7 +2,7 @@
 title: "Kubernetes: Core Concepts Primer - Part 1"
 date: 2021-07-29T10:16:56+05:30
 slug: "kubernetes core concepts primer"
-tags: ["kubernetes", "core"]
+tags: ["kubernetes", "k8s-primer"]
 draft: false
 ---
 
@@ -11,7 +11,7 @@ draft: false
 ## What is Kubernetes?
 > Kubernetes, also known as K8s, is an open-source system for automating deployment, scaling, and management of containerized applications.
 
-Componenets of Kubernetes:
+Components of Kubernetes:
 - **API Server**: Acts as a interface for users, cli, and other services to interact with the k8s system
 - **ETCD**: Key-Value store that stores the state, metadata etc.
 - **Scheduler**: A component that distributes work to nodes in the cluster.
