@@ -99,7 +99,8 @@ To create the following pod, run <code>kubectl create -f &lt;YAML></code></p>
     <span style=color:#f92672>containers</span>:
         - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>redis</span>
           <span style=color:#f92672>image</span>: <span style=color:#ae81ff>redis</span>
-</code></pre></div><h2 id=update-a-pod>Update a POD</h2>
+</code></pre></div><p>To fetch details about the pod, run <code>kubectl get pod &lt;POD_NAME></code>. <em><code>-o wide</code> option is used to get the complete details.</em></p>
+<h2 id=update-a-pod>Update a POD</h2>
 <ul>
 <li>If you are given a pod definition file, edit that file and use it to create a new Pod or update the existing one using <code>kubectl apply -f &lt;FILE></code></li>
 <li>If you are not given a definition file, you may extract the definition to a file using the below command:
