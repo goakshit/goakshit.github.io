@@ -57,6 +57,8 @@ spec:
           image: redis
 ```
 
+To fetch details about the pod, run `kubectl get pod <POD_NAME>`. *`-o wide` option is used to get the complete details.*
+
 ## Update a POD
 
 - If you are given a pod definition file, edit that file and use it to create a new Pod or update the existing one using `kubectl apply -f <FILE>`
