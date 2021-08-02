@@ -7,7 +7,7 @@
 <meta charset=utf-8>
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <title> Kubernetes: Core Concepts Primer - Part 2 | </title>
-<link rel=canonical href=/post/kubernetes-core-concepts-primer-part-2/>
+<link rel=canonical href=/post/k8s-primer-p2/>
 <meta name=description content="Software Engineer | Go | Microservices | Docker | Kubernetes | Avid Reader">
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=robots content="all,follow">
@@ -18,7 +18,7 @@
 Example:
 # Create a ReplicaSet apiVersion: apps/v1  # Api Version that made replicaset available kind: ReplicaSet  # Kind of resource metadata: name: redis-rs labels: type: redis-backend spec: replicas: 3 # Desired number of replicas selector: matchLabels: type: redis-backend  # Label selector used for filtering pods template: metadata: name: redis-pod labels: type: redis-backend # Label used by replicaset for identifying pods spec: containers: - name: redis image: redis Commands associated with ReplicaSet:">
 <meta property="og:type" content="article">
-<meta property="og:url" content="/post/kubernetes-core-concepts-primer-part-2/"><meta property="article:section" content="post">
+<meta property="og:url" content="/post/k8s-primer-p2/"><meta property="article:section" content="post">
 <meta property="article:published_time" content="2021-08-01T18:14:56+05:30">
 <meta property="article:modified_time" content="2021-08-01T18:14:56+05:30">
 <meta name=twitter:card content="summary">
@@ -119,7 +119,8 @@ Example:
             <span style=color:#f92672>containers</span>:
                 - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>redis</span>
                   <span style=color:#f92672>image</span>: <span style=color:#ae81ff>redis</span>
-</code></pre></div><h2 id=what-are-namespaces>What are Namespaces?</h2>
+</code></pre></div><p>Imperative command: <code>kubectl create deployment &lt;DEPLOYMENT_NAME> --image=&lt;IMAGE_NAME> --replicas=&lt;REPLICA_COUNT></code></p>
+<h2 id=what-are-namespaces>What are Namespaces?</h2>
 <blockquote>
 <p>Namespaces are a way to organize clusters into virtual sub-clusters — they can be helpful when different teams or projects share a Kubernetes cluster.</p>
 </blockquote>
@@ -148,7 +149,7 @@ Example:
     <span style=color:#f92672>hard</span>:
         <span style=color:#f92672>pods</span>: <span style=color:#e6db74>&#34;10&#34;</span>
         <span style=color:#f92672>requests.cpu</span>: <span style=color:#e6db74>&#34;100m&#34;</span>
-</code></pre></div>
+</code></pre></div><h2 id=continue-reading-kubernetes-core-concepts-primer---part-3k8s-primer-p3><strong>Continue reading</strong>: <a href=../k8s-primer-p3/>Kubernetes: Core Concepts Primer - Part 3</a></h2>
 </div>
 </article>
 <footer id=footer>
