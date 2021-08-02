@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes: Core Concepts Primer - Part 2"
-slug: "kubernetes core concepts primer part 2"
+slug: "k8s-primer-p2"
 tags: ["kubernetes", "k8s-primer"]
 date: 2021-08-01T18:14:56+05:30
 draft: false
@@ -75,6 +75,8 @@ spec:
                   image: redis
 ```
 
+Imperative command: `kubectl create deployment <DEPLOYMENT_NAME> --image=<IMAGE_NAME> --replicas=<REPLICA_COUNT>`
+
 
 ## What are Namespaces?
 > Namespaces are a way to organize clusters into virtual sub-clusters — they can be helpful when different teams or projects share a Kubernetes cluster.
@@ -111,3 +113,5 @@ spec:
         pods: "10"
         requests.cpu: "100m"
 ```
+
+## **Continue reading**: [Kubernetes: Core Concepts Primer - Part 3](../k8s-primer-p3/)

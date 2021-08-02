@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes: Core Concepts Primer - Part 1"
 date: 2021-07-29T10:16:56+05:30
-slug: "kubernetes core concepts primer"
+slug: "k8s-primer-p1"
 tags: ["kubernetes", "k8s-primer"]
 draft: false
 ---
@@ -59,9 +59,13 @@ spec:
 
 To fetch details about the pod, run `kubectl get pod <POD_NAME>`. *`-o wide` option is used to get the complete details.*
 
+Imperative command to create pod: `kubectl run <POD_NAME> --image=<IMAGE_NAME> --port=<PORT>`
+
 ## Update a POD
 
 - If you are given a pod definition file, edit that file and use it to create a new Pod or update the existing one using `kubectl apply -f <FILE>`
 - If you are not given a definition file, you may extract the definition to a file using the below command:
 `kubectl get pod <pod-name> -o yaml > pod-definition.yaml` and then edit the file to make the necessary changes, delete and re-create the pod.
 Use the `kubectl edit pod <pod-name>` command to edit pod properties.
+
+## **Continue reading**: [Kubernetes: Core Concepts Primer - Part 2](../k8s-primer-p2/)
