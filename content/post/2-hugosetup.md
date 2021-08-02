@@ -3,7 +3,7 @@ date = "2021-02-11"
 draft = false
 title = "Deploy hugo blog on github pages"
 slug = "hugo github pages"
-tags = ["hugo", "githubpages", "deploy"]
+tags = ["hugo", "github-pages", "deploy"]
 +++
 # Deploy hugo blog on github pages
 ## What is Hugo?
