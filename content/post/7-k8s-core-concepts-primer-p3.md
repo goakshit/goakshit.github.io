@@ -3,10 +3,54 @@ title: "Kubernetes: Core Concepts Primer - Part 3"
 slug: "k8s-primer-p3"
 tags: ["kubernetes", "k8s-primer"]
 date: 2021-08-02T18:47:58+05:30
-draft: true
+draft: false
 ---
 
 # Kubernetes: Core Concepts Primer - Part 3
+
+## What are ConfigMaps?
+> A ConfigMap allows you to decouple environment-specific configuration from your container images, so that your applications are easily portable. 
+
+*Note*: ConfigMap does not provide secrecy or encryption. If the data you want to store are confidential, use a Secret rather than a ConfigMap
+
+#### Imperative way to create configmaps: 
+```
+kubectl create configmap <CONFIG_NAME> --from-literal=<KEY>=<VALUE>
+kubectl create configmap <CONFIG_NAME> --from-file=<PATH_TO_FILE>
+```
+
+#### Declarative way to create configmaps:
+```yaml
+# kubectl create -f <FILE>
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: <CONFIG_NAME>
+data:
+    <KEY>: <VALUE>
+```
+
+To use config map in a pod, you need to mount it to the container. Refer the example below:
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configmap-demo-pod
+spec:
+  containers:
+    - name: demo
+      image: alpine
+      envFrom:              # Fetch complete config from a ConfigMap
+        - configMapRef:
+            name: <CONFIG_NAME>
+      env:                  # Fetch specific key from a ConfigMap
+        - name: <KEYNAME_TO_PASS_TO_POD>
+          valueFrom:
+            configMapKeyRef:
+              name: <CONFIG_NAME>
+              key: <KEYNAME_IN_CONFIG>
+```
+
 
 ## Notes
 
