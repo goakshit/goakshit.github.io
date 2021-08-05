@@ -2,7 +2,7 @@
 title: "Kubernetes: Core Concepts Primer - Part 3"
 slug: "k8s-primer-p3"
 tags: ["kubernetes", "k8s-primer"]
-date: 2021-08-02T18:47:58+05:30
+date: 2021-08-05T18:47:58+05:30
 draft: false
 ---
 
