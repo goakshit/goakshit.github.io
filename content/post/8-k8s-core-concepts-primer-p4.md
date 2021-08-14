@@ -10,7 +10,7 @@ draft: false
 
 ## Security Context in Kubernetes
 
-Whenever it comes to security, always follow the `The principe of least privilege` (PlP) principle which states that **a subject should be given only those privileges needed for it to complete its task.**
+Whenever it comes to security, always follow the `The principle of least privilege` (PlP) principle which states that **a subject should be given only those privileges needed for it to complete its task.**
 
 Applying the same principle to kubernetes objects, we should grant a user the privileges needed to perform a task. Thats all, nothing more or nothing less. Giving root permissions to containers is not recommended. 
 
@@ -114,3 +114,6 @@ Then, run `kubectl apply -f <LIMIT_RANGE_FILE> --namespace=<NAMESPACE_TO_APPLY_T
     |Kibibyte| Ki | 1024 |
     |Mebibyte| Mi | 1,048,576 |
     |Gibibyte| Gi | 1,073,741,824 |
+
+
+## **Continue reading**: [Kubernetes: Core Concepts Primer - Part 5](../k8s-primer-p5/)
