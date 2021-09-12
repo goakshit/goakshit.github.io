@@ -58,7 +58,7 @@ Imperative way to create configmaps: kubectl create configmap <CONFIG_NAME> --fr
 </blockquote>
 <p><em>Note</em>: ConfigMap does not provide secrecy or encryption. If the data you want to store are confidential, use a Secret rather than a ConfigMap</p>
 <h4 id=imperative-way-to-create-configmaps>Imperative way to create configmaps:</h4>
-<pre><code>kubectl create configmap &lt;CONFIG_NAME&gt; --from-literal=&lt;KEY&gt;=&lt;VALUE&gt;
+<pre tabindex=0><code>kubectl create configmap &lt;CONFIG_NAME&gt; --from-literal=&lt;KEY&gt;=&lt;VALUE&gt;
 kubectl create configmap &lt;CONFIG_NAME&gt; --from-file=&lt;PATH_TO_FILE&gt;
 </code></pre><h4 id=declarative-way-to-create-configmaps>Declarative way to create configmaps:</h4>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#75715e># kubectl create -f &lt;FILE&gt;</span>
@@ -96,7 +96,7 @@ kubectl create configmap &lt;CONFIG_NAME&gt; --from-file=&lt;PATH_TO_FILE&gt;
 </li>
 <li>
 <p>Remember, you CANNOT edit specifications of an existing POD other than the below.</p>
-<pre><code>    spec.containers[*].image
+<pre tabindex=0><code>    spec.containers[*].image
 
     spec.initContainers[*].image
 

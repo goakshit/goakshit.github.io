@@ -71,7 +71,7 @@ Let&rsquo;s jump right in.
 <li>To deploy the blog, we need to build it. Go to blog directory and run <strong><code> hugo</code></strong>. This will create a <code>public</code> directory or the name that we have configured in <code>config.toml</code> file.</li>
 <li>Now we need to commit files to the repository.</li>
 </ul>
-<pre><code>git add .
+<pre tabindex=0><code>git add .
 git remote add origin
 git remote add origin https://github.com/&lt;GITHUB_USERNAME&gt;/&lt;GITHUB_USERNAME&gt;.github.io.git
 git commit -m &quot;Initial commit&quot;
@@ -79,13 +79,13 @@ git push origin master
 </code></pre><ul>
 <li>Now that our files are there in the repository&rsquo;s master branch, we need to push the <code>public</code> directory to gh-pages branch for the website to be available. We will create a subtree from the <code>public</code> directory and push the <code>public</code> directory to <code>gh-pages</code> branch.</li>
 </ul>
-<pre><code>git add public &amp;&amp; git commit -m &quot;Initial public subtree commit&quot;
+<pre tabindex=0><code>git add public &amp;&amp; git commit -m &quot;Initial public subtree commit&quot;
 git subtree push --prefix public origin gh-pages
 </code></pre><ul>
 <li>The last step would be to go-to repository settings and under <code>Github pages</code> section, update the Source to <code>gh-pages</code> branch and save it. Our blog should then be available at <strong>https://&lt;YOUR_GITHUB_USERNAME>.github.io</strong></li>
 <li>We created a subtree with only <code>public</code> directory. So whenever we update the website in future, we will commit the changes in the master branch but for changes to be reflected in the website, we need to update the subtree and push the changes to the gh-pages branch. So, after we build the updated blog using <strong><code>hugo</code></strong> command, we need to run the following command that pushes the updated <code>public</code> directory to <code>gh-pages</code> branch.</li>
 </ul>
-<pre><code>git push origin `git subtree split --prefix public master`:gh-pages --force
+<pre tabindex=0><code>git push origin `git subtree split --prefix public master`:gh-pages --force
 </code></pre><p>You can add themes, about page and so on. All that information is available at <a href=https://gohugo.io/documentation/>hugodocs</a>. Hope it helps someone who wants to deploy a blog in no time. There is an easier way to deploy that involves storing Hugo code in one repository and build files in another. But I didn&rsquo;t want to create two repo for the same.</p>
 <p>You can reach me out on <a href=https://twitter.com/dharakshit>Twitter</a> or write to <a href=mailto:akshitdhar@live.com>me</a></p>
 </div>
