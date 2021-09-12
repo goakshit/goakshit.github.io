@@ -57,3 +57,17 @@ Personally, I prefer to use the `RFC3339` format. One should use the RFC822, RFC
         }
 
     ```
+
+
+
+- ### func ParseDuration(s string) (Duration, error)
+
+    Parses the duration from string. Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'. 
+
+    **Example**: In the example below, we will parse the duration from string.
+    ```go
+        func main() {
+            complex, _ := time.ParseDuration("1h10m10s")
+            fmt.Printf("There are %.0f seconds in %v.\n", complex.Seconds(), complex)
+        }
+    ```
