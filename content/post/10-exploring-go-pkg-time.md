@@ -3,7 +3,7 @@ title: "Exploring go pkg - time"
 slug: "exploring-go-pkg-time"
 tags: ["go", "pkg", "time"]
 date: 2021-09-12T18:29:08+05:30
-draft: true
+draft: false
 ---
 
 # Exploring go pkg - time
