@@ -29,9 +29,9 @@ Personally, I prefer to use the `RFC3339` format. One should use the RFC822, RFC
 
 - ### func After(d Duration) <-chan Time
 
-    Returns a channel that will send the time t+d after the time t where d is time duration to wait.
+    Returns a channel that will send the current time (t+d) where d is time duration to wait.
 
-    **Example**: In the example below, we will spawn a goroutine that will `doSomething`. If the `doSomething` takes more than 5 second to complete, we will get current time from `time.After` and will break out of the loop.
+    **Example**: We will spawn a goroutine that will `doSomething`. If the `doSomething` takes more than 5 second to complete, we will get current time from `time.After` and will break out of the loop.
 
     ```go
         func main() {
@@ -57,17 +57,50 @@ Personally, I prefer to use the `RFC3339` format. One should use the RFC822, RFC
         }
 
     ```
-
-
-
+######
 - ### func ParseDuration(s string) (Duration, error)
 
     Parses the duration from string. Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'. 
 
-    **Example**: In the example below, we will parse the duration from string.
+    **Example**: We will parse the duration from string.
     ```go
         func main() {
             complex, _ := time.ParseDuration("1h10m10s")
             fmt.Printf("There are %.0f seconds in %v.\n", complex.Seconds(), complex)
+        }
+    ```
+######
+- ### func (d Duration) Round(m Duration) Duration
+
+    Rounds the duration to the nearest multiple of m.
+
+    **Example**: We will round the duration to the nearest durations.
+    ```go
+        func main() {
+            d, _ := time.ParseDuration("1h15m30.918273645s")
+            
+            // We are rounding towards nearest second. So, "30.918273645s" becomes "31".
+            fmt.Printf("d.Round(%6s) = %s\n", r, d.Round(time.Second).String()) // d.Round(1s) = 1h15m31s
+
+            // We are rounding towards nearest hour. So, "1h15m30.918273645s" becomes "1h00m00s".
+            fmt.Printf("d.Round(%6s) = %s\n", r, d.Round(time.Hour).String()) // d.Round(1h0m0s) = 1h0m0s
+        }
+    ```
+
+######
+- ### func (d Duration) Truncate(m Duration) Duration
+
+    Truncates the duration to the nearest multiple of m. Similar to round up, truncate will round down to nearest multiple.
+
+    **Example**: We will truncate the duration to the nearest durations.
+    ```go
+        func main() {
+            d, _ := time.ParseDuration("1h15m30.918273645s")
+            
+            // We are truncating towards nearest second. So, "30.918273645s" becomes "30".
+            fmt.Printf("d.Truncate(%6s) = %s\n", r, d.Truncate(time.Second).String()) // d.Truncate(1s) = 1h15m30s
+
+            // We are truncating towards nearest hour. So, "1h15m30.918273645s" becomes "1h00m00s".
+            fmt.Printf("d.Truncate(%6s) = %s\n", r, d.Truncate(time.Hour).String()) // d.Truncate(1h0m0s) = 1h0m0s
         }
     ```
