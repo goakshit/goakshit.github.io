@@ -140,6 +140,65 @@ const ( UnixDate = &#34;Mon Jan _2 15:04:05 MST 2006&#34; RFC1123 = &#34;Mon, 02
 </span><span style=color:#75715e></span>    }
 </code></pre></div></li>
 </ul>
+<h6 id=heading-3></h6>
+<ul>
+<li>
+<h3 id=func-newtickerd-duration-ticker>func NewTicker(d Duration) *Ticker</h3>
+<p>Returns a new Ticker containing a channel that will send the time with a period specified by d.</p>
+<ul>
+<li><code>d</code> must be greater than 0, otherwise ticker will panic</li>
+<li>To release resources, we need to stop the ticker using <code>&lt;ticker_instance>.Stop()</code></li>
+</ul>
+<p><strong>Example</strong>:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
+
+        <span style=color:#a6e22e>ticker</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>NewTicker</span>(<span style=color:#ae81ff>1</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Minute</span>)
+        <span style=color:#66d9ef>defer</span> <span style=color:#a6e22e>ticker</span>.<span style=color:#a6e22e>Stop</span>()
+        <span style=color:#66d9ef>go</span> <span style=color:#66d9ef>func</span>() {
+            <span style=color:#66d9ef>for</span> {
+                <span style=color:#66d9ef>select</span> {
+                <span style=color:#66d9ef>case</span> <span style=color:#f92672>&lt;-</span><span style=color:#a6e22e>ticker</span>.<span style=color:#a6e22e>C</span>:
+                    <span style=color:#66d9ef>go</span> <span style=color:#a6e22e>doSomething</span>()
+                }
+            }
+        }()
+    }
+</code></pre></div></li>
+</ul>
+<h6 id=heading-4></h6>
+<ul>
+<li>
+<h3 id=func-newtimerd-duration-timer>func NewTimer(d Duration) *Timer</h3>
+<p>The Timer type represents a single event. When the Timer expires, the current time will be sent on C</p>
+<p><strong>Example</strong>:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>(){
+        <span style=color:#a6e22e>timer</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>NewTimer</span>(<span style=color:#ae81ff>1</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Minute</span>)
+        <span style=color:#a6e22e>ch</span> <span style=color:#f92672>:=</span> make(<span style=color:#66d9ef>chan</span> <span style=color:#66d9ef>bool</span>)
+        <span style=color:#66d9ef>go</span> <span style=color:#66d9ef>func</span>(<span style=color:#a6e22e>ch</span> <span style=color:#66d9ef>chan</span> <span style=color:#66d9ef>bool</span>) {
+            <span style=color:#a6e22e>_</span> = <span style=color:#f92672>&lt;-</span><span style=color:#a6e22e>timer</span>.<span style=color:#a6e22e>C</span>
+            <span style=color:#a6e22e>ch</span> <span style=color:#f92672>&lt;-</span> <span style=color:#66d9ef>true</span>
+        }(<span style=color:#a6e22e>ch</span>)
+
+        <span style=color:#a6e22e>OUTER</span>:
+            <span style=color:#66d9ef>for</span> {
+                <span style=color:#66d9ef>select</span> {
+                    <span style=color:#66d9ef>case</span> <span style=color:#f92672>&lt;-</span><span style=color:#a6e22e>ch</span>:
+                        <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Println</span>(<span style=color:#e6db74>&#34;1 minute done&#34;</span>)
+                        <span style=color:#66d9ef>break</span> <span style=color:#a6e22e>OUTER</span>
+                }
+            }
+    }
+</code></pre></div></li>
+</ul>
+<h6 id=heading-5></h6>
+<h2 id=some-important-pointers-of-time-struct>Some important pointers of Time struct:</h2>
+<ul>
+<li>A Time represents an instant in time with nanosecond precision.</li>
+<li>Programs using times should typically store and pass them as values, not pointers. That is, time variables and struct fields should be of type time.Time, not *time.Time.</li>
+<li>A Time value can be used by multiple goroutines simultaneously except that the methods GobDecode, UnmarshalBinary, UnmarshalJSON and UnmarshalText are not concurrency-safe.</li>
+<li>Time instants can be compared using the Before, After, and Equal methods.</li>
+<li>(PARSING) For layouts specifying the two-digit year 06, a value NN >= 69 will be treated as 19NN and a value NN &lt; 69 will be treated as 20NN.</li>
+</ul>
 </div>
 </article>
 <footer id=footer>
