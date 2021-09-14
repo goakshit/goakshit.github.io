@@ -104,3 +104,63 @@ Personally, I prefer to use the `RFC3339` format. One should use the RFC822, RFC
             fmt.Printf("d.Truncate(%6s) = %s\n", r, d.Truncate(time.Hour).String()) // d.Truncate(1h0m0s) = 1h0m0s
         }
     ```
+
+######
+- ### func NewTicker(d Duration) *Ticker
+
+    Returns a new Ticker containing a channel that will send the time with a period specified by d. 
+    - `d` must be greater than 0, otherwise ticker will panic
+    - To release resources, we need to stop the ticker using `<ticker_instance>.Stop()`
+
+    **Example**:
+    ```go
+        func main() {
+            
+            ticker := time.NewTicker(1 * time.Minute)
+            defer ticker.Stop()
+            go func() {
+                for {
+                    select {
+                    case <-ticker.C:
+                        go doSomething()
+                    }
+                }
+            }()
+        }
+    ```
+
+######
+- ### func NewTimer(d Duration) *Timer
+
+    The Timer type represents a single event. When the Timer expires, the current time will be sent on C
+
+    **Example**:
+    ```go
+        func main(){
+            timer := time.NewTimer(1 * time.Minute)
+            ch := make(chan bool)
+            go func(ch chan bool) {
+                _ = <-timer.C
+                ch <- true
+            }(ch)
+            
+            OUTER:
+                for {
+                    select {
+                        case <-ch:
+                            fmt.Println("1 minute done")
+                            break OUTER
+                    }
+                }
+        }
+    ```
+
+
+
+######
+## Some important pointers of Time struct:
+- A Time represents an instant in time with nanosecond precision. 
+- Programs using times should typically store and pass them as values, not pointers. That is, time variables and struct fields should be of type time.Time, not *time.Time. 
+- A Time value can be used by multiple goroutines simultaneously except that the methods GobDecode, UnmarshalBinary, UnmarshalJSON and UnmarshalText are not concurrency-safe. 
+- Time instants can be compared using the Before, After, and Equal methods.
+- (PARSING) For layouts specifying the two-digit year 06, a value NN >= 69 will be treated as 19NN and a value NN < 69 will be treated as 20NN. 
