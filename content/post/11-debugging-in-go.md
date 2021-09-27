@@ -2,7 +2,7 @@
 title: "Debugging in golang"
 tags: ["go", "dlv", "debugging"]
 slug: "debugging-in-golang"
-date: 2021-09-22T17:33:57+05:30
+date: 2021-09-27T10:33:57+05:30
 draft: false
 ---
 ![](/img/debugging.jpg)

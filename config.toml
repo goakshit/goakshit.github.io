@@ -4,11 +4,11 @@
     disable=false
 
 [params]
+  postsOnHomePage = 1000
   colortheme = "white" # dark, light, white, or classic
   description = "Software Engineer | Go | Microservices | Docker | Kubernetes | Avid Reader"
   mainSection = "/"
   mainSectionTitle = "Blog"
-  showAllPostsOnHomePage = true
   googleAnalytics = "G-WSFMC7VYKC"
   BaseURL = "https://goakshit.github.io/"
   logo = "https://golang.org/doc/gopher/favicon.svg"
@@ -45,7 +45,7 @@ name = "About"
 url = "/about"
 weight = 4
 
-buildDrafts            = false
+buildDrafts            = true
 relativeURLs           = true
 canonifyUrls           = true
 contentDir             = "content"
