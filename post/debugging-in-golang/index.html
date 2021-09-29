@@ -64,11 +64,11 @@ $ go install github.com/go-delve/delve/cmd/dlv
 </code></pre></div><blockquote>
 <p>Note: You can refer to <a href=https://github.com/go-delve/delve/tree/master/Documentation/installation>installation docs</a> if you face any issues.</p>
 </blockquote>
-<p>Once you have delve installed, we can start debugging our code. To do so, run <code>dlv debug &lt;FILENAME.go></code>. Normally we will run <code>dlv debug main.go</code> to start debugging our code as shown below.</p>
+<p>Once we have delve installed, we can start debugging our code. To do so, run <code>dlv debug &lt;FILENAME.go></code>. Normally we will run <code>dlv debug main.go</code> to start debugging our code as shown below.</p>
 <p><img src=/img/11_2_dlv_cmd.png alt></p>
-<p>Now that you are running <code>dlv</code>, you can set breakpoints using <code>b &lt;FILENAME.go>:LINE_NUMBER</code>. For example, to set a breakpoint at line number <code>5</code> in <code>main.go</code>, run <code>b ./main.go:5</code>.</p>
+<p>Now that we are running <code>dlv</code>, we can set breakpoints using <code>b &lt;FILENAME.go>:LINE_NUMBER</code>. For example, to set a breakpoint at line number <code>5</code> in <code>main.go</code>, run <code>b ./main.go:5</code>.</p>
 <p><img src=/img/11_3_dlv_breakpoint.png alt></p>
-<p>Once the break point is set, you can start debugging. To start debugging, you can hit <code>c</code> and enter. Your application will start as it is, but will stop if breakpoint is hit.</p>
+<p>Once the break point is set, we can start debugging. To start debugging, we can hit <code>c</code> and enter. Our application will start as it is, but will stop if breakpoint is hit.</p>
 <h4 id=example>Example:</h4>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>                    <span style=color:#75715e>// Line 1
 </span><span style=color:#75715e></span>                                <span style=color:#75715e>// Line 2
@@ -86,7 +86,25 @@ $ go install github.com/go-delve/delve/cmd/dlv
 <li><code>n</code> will move the control to next line (i.e. line 8). Before moving to next line, it will execute line 7 and print <code>3</code>.</li>
 </ul>
 <p><img src=/img/11_4_dlv_moving.png alt></p>
-<h2 id=i-will-add-more-commands-in-future-for-now-these-basic-commands-will-help-you-debug-variables-values>I will add more commands in future. For now, these basic commands will help you debug variables values.</h2>
+<p>Now that we know how the control works and how we can navigate through lines, we can look at <code>step-in</code>. Sometimes we would like to step-in to a function call and iterate over, and then come out of the function.</p>
+<h4 id=example-1>Example:</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>                    <span style=color:#75715e>// Line 1
+</span><span style=color:#75715e></span>								<span style=color:#75715e>// Line 2
+</span><span style=color:#75715e></span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>add</span>(<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>y</span> <span style=color:#66d9ef>int</span>) <span style=color:#66d9ef>int</span> {		<span style=color:#75715e>// Line 3
+</span><span style=color:#75715e></span>	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>x</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>y</span>				<span style=color:#75715e>// Line 4
+</span><span style=color:#75715e></span>}								<span style=color:#75715e>// Line 5
+</span><span style=color:#75715e></span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {                   <span style=color:#75715e>// Line 6
+</span><span style=color:#75715e></span>	<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>z</span> <span style=color:#66d9ef>int</span>             <span style=color:#75715e>// Line 7
+</span><span style=color:#75715e></span>	<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>y</span> = <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>                 <span style=color:#75715e>// Line 8
+</span><span style=color:#75715e></span>	<span style=color:#a6e22e>z</span> = <span style=color:#a6e22e>add</span>(<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>y</span>)               <span style=color:#75715e>// Line 9
+</span><span style=color:#75715e></span>	println(<span style=color:#a6e22e>z</span>)                  <span style=color:#75715e>// Line 10
+</span><span style=color:#75715e></span>}                               <span style=color:#75715e>// Line 11
+</span></code></pre></div><p>For the above code, if we set breakpoint at <code>b ./main.go:9</code> and then hit <code>c</code>, the control will stop at line 8 as we can see below.</p>
+<ul>
+<li><code>s</code> will move control to the <code>add</code> method</li>
+<li><code>n</code> will move the control to line 4 and another <code>n</code> will move the control to line 5 and then it will exit the add function. The control will move back to line 9, but this time <code>variable z</code> will have the returned value.</li>
+</ul>
+<p><img src=/img/11_5_dlv_step.png alt></p>
 </div>
 </article>
 <footer id=footer>
