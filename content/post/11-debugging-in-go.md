@@ -22,15 +22,15 @@ $ go install github.com/go-delve/delve/cmd/dlv
 ```
 >Note: You can refer to [installation docs](https://github.com/go-delve/delve/tree/master/Documentation/installation) if you face any issues.
 
-Once you have delve installed, we can start debugging our code. To do so, run `dlv debug <FILENAME.go>`. Normally we will run `dlv debug main.go` to start debugging our code as shown below.
+Once we have delve installed, we can start debugging our code. To do so, run `dlv debug <FILENAME.go>`. Normally we will run `dlv debug main.go` to start debugging our code as shown below.
 
 ![](/img/11_2_dlv_cmd.png)
 
-Now that you are running `dlv`, you can set breakpoints using `b <FILENAME.go>:LINE_NUMBER`. For example, to set a breakpoint at line number `5` in `main.go`, run `b ./main.go:5`.
+Now that we are running `dlv`, we can set breakpoints using `b <FILENAME.go>:LINE_NUMBER`. For example, to set a breakpoint at line number `5` in `main.go`, run `b ./main.go:5`.
 
 ![](/img/11_3_dlv_breakpoint.png)
 
-Once the break point is set, you can start debugging. To start debugging, you can hit `c` and enter. Your application will start as it is, but will stop if breakpoint is hit.
+Once the break point is set, we can start debugging. To start debugging, we can hit `c` and enter. Our application will start as it is, but will stop if breakpoint is hit.
 
 #### Example:
 ```go
@@ -52,4 +52,25 @@ For the above code, if we set breakpoint at `b ./main.go:5` and then hit `c`, th
 ![](/img/11_4_dlv_moving.png)
 
 
-## I will add more commands in future. For now, these basic commands will help you debug variables values. 
+Now that we know how the control works and how we can navigate through lines, we can look at `step-in`. Sometimes we would like to step-in to a function call and iterate over, and then come out of the function. 
+
+#### Example:
+```go
+package main                    // Line 1
+								// Line 2
+func add(x, y int) int {		// Line 3
+	return x + y				// Line 4
+}								// Line 5
+func main() {                   // Line 6
+	var x, y, z int             // Line 7
+	x, y = 1, 2                 // Line 8
+	z = add(x, y)               // Line 9
+	println(z)                  // Line 10
+}                               // Line 11
+```
+
+For the above code, if we set breakpoint at `b ./main.go:9` and then hit `c`, the control will stop at line 8 as we can see below. 
+- `s` will move control to the `add` method
+- `n` will move the control to line 4 and another `n` will move the control to line 5 and then it will exit the add function. The control will move back to line 9, but this time `variable z` will have the returned value.
+
+![](/img/11_5_dlv_step.png)
