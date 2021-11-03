@@ -86,11 +86,12 @@ const ( UnixDate = &#34;Mon Jan _2 15:04:05 MST 2006&#34; RFC1123 = &#34;Mon, 02
             }
     }
 
-    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>doSomething</span>(<span style=color:#a6e22e>c</span> <span style=color:#66d9ef>chan</span> <span style=color:#66d9ef>int</span>) {
+
         <span style=color:#75715e>// Do some work which should finish in max 5 seconds
 </span><span style=color:#75715e></span>        <span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Sleep</span>(<span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Second</span>)
         <span style=color:#a6e22e>c</span> <span style=color:#f92672>&lt;-</span> <span style=color:#ae81ff>2</span>
     }
+
 
 </code></pre></div></li>
 </ul>
@@ -114,12 +115,11 @@ const ( UnixDate = &#34;Mon Jan _2 15:04:05 MST 2006&#34; RFC1123 = &#34;Mon, 02
 <p><strong>Example</strong>: We will round the duration to the nearest durations.</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
         <span style=color:#a6e22e>d</span>, <span style=color:#a6e22e>_</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>ParseDuration</span>(<span style=color:#e6db74>&#34;1h15m30.918273645s&#34;</span>)
-
-        <span style=color:#75715e>// We are rounding towards nearest second. So, &#34;30.918273645s&#34; becomes &#34;31&#34;.
-</span><span style=color:#75715e></span>        <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;d.Round(%6s) = %s\n&#34;</span>, <span style=color:#a6e22e>r</span>, <span style=color:#a6e22e>d</span>.<span style=color:#a6e22e>Round</span>(<span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Second</span>).<span style=color:#a6e22e>String</span>()) <span style=color:#75715e>// d.Round(1s) = 1h15m31s
+ 
+        <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;d.Round(%6s) = %s\n&#34;</span>, <span style=color:#a6e22e>r</span>, <span style=color:#a6e22e>d</span>.<span style=color:#a6e22e>Round</span>(<span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Second</span>).<span style=color:#a6e22e>String</span>()) <span style=color:#75715e>// d.Round(1s) = 1h15m31s
 </span><span style=color:#75715e></span>
-        <span style=color:#75715e>// We are rounding towards nearest hour. So, &#34;1h15m30.918273645s&#34; becomes &#34;1h00m00s&#34;.
-</span><span style=color:#75715e></span>        <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;d.Round(%6s) = %s\n&#34;</span>, <span style=color:#a6e22e>r</span>, <span style=color:#a6e22e>d</span>.<span style=color:#a6e22e>Round</span>(<span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Hour</span>).<span style=color:#a6e22e>String</span>()) <span style=color:#75715e>// d.Round(1h0m0s) = 1h0m0s
+
+        <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;d.Round(%6s) = %s\n&#34;</span>, <span style=color:#a6e22e>r</span>, <span style=color:#a6e22e>d</span>.<span style=color:#a6e22e>Round</span>(<span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Hour</span>).<span style=color:#a6e22e>String</span>()) <span style=color:#75715e>// d.Round(1h0m0s) = 1h0m0s
 </span><span style=color:#75715e></span>    }
 </code></pre></div></li>
 </ul>
@@ -131,12 +131,11 @@ const ( UnixDate = &#34;Mon Jan _2 15:04:05 MST 2006&#34; RFC1123 = &#34;Mon, 02
 <p><strong>Example</strong>: We will truncate the duration to the nearest durations.</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
         <span style=color:#a6e22e>d</span>, <span style=color:#a6e22e>_</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>ParseDuration</span>(<span style=color:#e6db74>&#34;1h15m30.918273645s&#34;</span>)
-
-        <span style=color:#75715e>// We are truncating towards nearest second. So, &#34;30.918273645s&#34; becomes &#34;30&#34;.
-</span><span style=color:#75715e></span>        <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;d.Truncate(%6s) = %s\n&#34;</span>, <span style=color:#a6e22e>r</span>, <span style=color:#a6e22e>d</span>.<span style=color:#a6e22e>Truncate</span>(<span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Second</span>).<span style=color:#a6e22e>String</span>()) <span style=color:#75715e>// d.Truncate(1s) = 1h15m30s
+ 
+        <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;d.Truncate(%6s) = %s\n&#34;</span>, <span style=color:#a6e22e>r</span>, <span style=color:#a6e22e>d</span>.<span style=color:#a6e22e>Truncate</span>(<span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Second</span>).<span style=color:#a6e22e>String</span>()) <span style=color:#75715e>// d.Truncate(1s) = 1h15m30s
 </span><span style=color:#75715e></span>
-        <span style=color:#75715e>// We are truncating towards nearest hour. So, &#34;1h15m30.918273645s&#34; becomes &#34;1h00m00s&#34;.
-</span><span style=color:#75715e></span>        <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;d.Truncate(%6s) = %s\n&#34;</span>, <span style=color:#a6e22e>r</span>, <span style=color:#a6e22e>d</span>.<span style=color:#a6e22e>Truncate</span>(<span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Hour</span>).<span style=color:#a6e22e>String</span>()) <span style=color:#75715e>// d.Truncate(1h0m0s) = 1h0m0s
+
+        <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;d.Truncate(%6s) = %s\n&#34;</span>, <span style=color:#a6e22e>r</span>, <span style=color:#a6e22e>d</span>.<span style=color:#a6e22e>Truncate</span>(<span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Hour</span>).<span style=color:#a6e22e>String</span>()) <span style=color:#75715e>// d.Truncate(1h0m0s) = 1h0m0s
 </span><span style=color:#75715e></span>    }
 </code></pre></div></li>
 </ul>
@@ -151,8 +150,7 @@ const ( UnixDate = &#34;Mon Jan _2 15:04:05 MST 2006&#34; RFC1123 = &#34;Mon, 02
 </ul>
 <p><strong>Example</strong>:</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
-
-        <span style=color:#a6e22e>ticker</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>NewTicker</span>(<span style=color:#ae81ff>1</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Minute</span>)
+ 
         <span style=color:#66d9ef>defer</span> <span style=color:#a6e22e>ticker</span>.<span style=color:#a6e22e>Stop</span>()
         <span style=color:#66d9ef>go</span> <span style=color:#66d9ef>func</span>() {
             <span style=color:#66d9ef>for</span> {
@@ -178,8 +176,7 @@ const ( UnixDate = &#34;Mon Jan _2 15:04:05 MST 2006&#34; RFC1123 = &#34;Mon, 02
             <span style=color:#a6e22e>_</span> = <span style=color:#f92672>&lt;-</span><span style=color:#a6e22e>timer</span>.<span style=color:#a6e22e>C</span>
             <span style=color:#a6e22e>ch</span> <span style=color:#f92672>&lt;-</span> <span style=color:#66d9ef>true</span>
         }(<span style=color:#a6e22e>ch</span>)
-
-        <span style=color:#a6e22e>OUTER</span>:
+ 
             <span style=color:#66d9ef>for</span> {
                 <span style=color:#66d9ef>select</span> {
                     <span style=color:#66d9ef>case</span> <span style=color:#f92672>&lt;-</span><span style=color:#a6e22e>ch</span>:
