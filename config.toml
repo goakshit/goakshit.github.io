@@ -4,6 +4,7 @@
     disable=false
 
 baseURL = "https://goakshit.github.com"
+enableEmoji = true
 title   = "ADs Blog"
 languageCode = "en-us"
 theme = "hello-friend-ng"
@@ -31,7 +32,6 @@ canonifyURLs = true
 
 enableRobotsTXT = true
 enableGitInfo   = false
-enableEmoji     = true
 enableMissingTranslationPlaceholders = false
 disableRSS     = false
 disableSitemap = false
@@ -181,13 +181,20 @@ disableHugoGeneratorInject = false
 [languages]
   [languages.en]
     title = "Akshit Dhar"
+    contentDir = 'content/en'
     weight    = 1
+    copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
+
+  [languages.de]
+    title = "Akshit Dhar"
+    contentDir = 'content/de'
+    weight    = 2
     copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
 
 [menu]
   [[menu.main]]
-    identifier = "posts"
-    name       = "posts"
+    identifier = "blog"
+    name       = "blog"
     url        = "posts/"
   [[menu.main]]
     identifier = "thoughts"
