@@ -1,0 +1,824 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Akshit Dhar</title><link>/posts/</link><description>Recent content in Posts on Akshit Dhar</description><generator>Hugo -- gohugo.io</generator><copyright>&lt;a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0&lt;/a></copyright><lastBuildDate>Mon, 01 Nov 2021 10:18:22 +0530</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Learning Rust Series: Code organization</title><link>/posts/2021/11/learning-rust-series-code-organization/</link><pubDate>Mon, 01 Nov 2021 10:18:22 +0530</pubDate><guid>/posts/2021/11/learning-rust-series-code-organization/</guid><description>Prerequisites: I am hoping you have Cargo and Rust installed. If not, head to the Guide.
+In this series, I will be explaining things that I come across on my Rust learning journey. This is the first installment of the Learning Rust Series which will cover code organization in rust, which is different from other languages.
+Code organization is an interesting topic. Whenever I start learning a new language, this is the first thing that I look at.</description><content type="html"><![CDATA[<blockquote>
+<p><strong>Prerequisites</strong>: I am hoping you have Cargo and Rust installed. If not, head to the <!-- raw HTML omitted --><a href="https://doc.rust-lang.org/cargo/getting-started/installation.html">Guide</a>.</p>
+</blockquote>
+<p>In this series, I will be explaining things that I come across on my Rust learning journey. This is the first installment of the Learning Rust Series which will cover code organization in rust, which is different from other languages.</p>
+<p>Code organization is an interesting topic. Whenever I start learning a new language, this is the first thing that I look at. What are the best practices? What are the do&rsquo;s and don&rsquo;t? I try to get into best practise right away since it&rsquo;s easy to get the hang of it at the beginning than unlearning it later.</p>
+<p>Let&rsquo;s get started.</p>
+<h3 id="initialize-the-code">Initialize the code.</h3>
+<p>To initialize the code in rust, run <code>cargo init</code>. It will create following file:</p>
+<ul>
+<li><code>Cargo.toml</code>: It&rsquo;s a config file for cargo which hold information about the project and dependencies.</li>
+<li><code>src/main.rs</code>: Entry point for the project.</li>
+</ul>
+<p>To run the code, run <code>cargo run</code>. It will execute the <code>main.rs</code> file.</p>
+<h4 id="lets-look-at-an-example">Let&rsquo;s look at an example.</h4>
+<p>We will create a new directory under <code>./src</code> called <code>greeting</code> which will have couple of files (<code>mod.rs</code>, <code>greet.rs</code>). The directory structure will look like as shown below:</p>
+<pre tabindex="0"><code>project
+│   Cargo.toml
+└─── /src
+    │   main.rs
+    └─── /greeting
+        │   mod.rs
+        │   greet.rs
+</code></pre><p>We want to run a function <code>hello</code> in <code>greet.rs</code> file. To do that, this <code>hello</code> function should be visible and accessible from the <code>main.rs</code> file. We need to add the following line to <code>greet.rs</code> file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#75715e">// src/greeting/greet.rs
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">hello</span>() {
+    println!(<span style="color:#e6db74">&#34;Hello, world!&#34;</span>);
+}
+
+</code></pre></div><p>The <code>pub</code> keyword is used to make the function visible from outside the module. Now that we have a public <code>hello</code> function, we need to tell <code>mod.rs</code> about the <code>greet.rs</code> file. To do that, we need to add the following line to <code>mod.rs</code> file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#75715e">// src/greeting/mod.rs
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">mod</span> greet;
+</code></pre></div><p>Now we have a public module named <code>greet</code>, which is visible from the <code>main.rs</code> file. To run the <code>hello</code> function, we need to import the <code>greet</code> module. Let&rsquo;s look at that:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#75715e">// src/main.rs
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">mod</span> greeter;
+
+<span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+    greeter::greet::hello();
+} 
+</code></pre></div><p>In the line-1, we are importing <code>greeter</code> module. As discussed above, this module exposes the greet&rsquo;s <code>hello</code> function. Inside main function, we are calling the <code>hello</code> function which prints out <code>Hello, world!</code> on the console.</p>
+<p>We can segregate similar logic into modules in similar way. Say, <code>greeter</code> directory can have another file called <code>good_bye.rs</code>, which should be included in the <code>mod.rs</code> file and then can be called in a similar fashion in the <code>main.rs</code> file.</p>
+<blockquote>
+<p>I hope this article gave you some idea about code organization in Rust.</p>
+</blockquote>
+]]></content></item><item><title>Debugging in golang</title><link>/posts/2021/09/debugging-in-golang/</link><pubDate>Mon, 27 Sep 2021 10:33:57 +0530</pubDate><guid>/posts/2021/09/debugging-in-golang/</guid><description>Technology photo created by pressfoto - www.freepik.com We all know that debugging is a very important part of development process and sometimes it can become a nightmare. But how can we do it in golang?
+delve or dlv is a tool that can help us to debug our code. It lets us set breakpoints, get value of variables, step into functions, step over functions, step out of functions, run to a specific line, update the variable values etc.</description><content type="html"><![CDATA[<p><img src="/img/debugging.jpg" alt=""></p>
+<h6 id="a-hrefhttpswwwfreepikcomphotostechnologytechnology-photo-created-by-pressfoto---wwwfreepikcoma"><!-- raw HTML omitted -->Technology photo created by pressfoto - <a href="http://www.freepik.com">www.freepik.com</a><!-- raw HTML omitted --></h6>
+<p>We all know that debugging is a very important part of development process and sometimes it can become a nightmare. But how can we do it in golang?</p>
+<blockquote>
+<p><code>delve</code> or <code>dlv</code> is a tool that can help us to debug our code. It lets us set breakpoints, get value of variables, step into functions, step over functions, step out of functions, run to a specific line, update the variable values etc.</p>
+</blockquote>
+<p>To get started with <code>delve</code>, we need to install it.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git clone https://github.com/go-delve/delve
+$ cd delve
+$ go install github.com/go-delve/delve/cmd/dlv
+</code></pre></div><blockquote>
+<p>Note: You can refer to <a href="https://github.com/go-delve/delve/tree/master/Documentation/installation">installation docs</a> if you face any issues.</p>
+</blockquote>
+<p>Once we have delve installed, we can start debugging our code. To do so, run <code>dlv debug &lt;FILENAME.go&gt;</code>. Normally we will run <code>dlv debug main.go</code> to start debugging our code as shown below.</p>
+<p><img src="/img/11_2_dlv_cmd.png" alt=""></p>
+<p>Now that we are running <code>dlv</code>, we can set breakpoints using <code>b &lt;FILENAME.go&gt;:LINE_NUMBER</code>. For example, to set a breakpoint at line number <code>5</code> in <code>main.go</code>, run <code>b ./main.go:5</code>.</p>
+<p><img src="/img/11_3_dlv_breakpoint.png" alt=""></p>
+<p>Once the break point is set, we can start debugging. To start debugging, we can hit <code>c</code> and enter. Our application will start as it is, but will stop if breakpoint is hit.</p>
+<h4 id="example">Example:</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>                    <span style="color:#75715e">// Line 1
+</span><span style="color:#75715e"></span>                                <span style="color:#75715e">// Line 2
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {                   <span style="color:#75715e">// Line 3
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">y</span>, <span style="color:#a6e22e">z</span> <span style="color:#66d9ef">int</span>             <span style="color:#75715e">// Line 4
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">y</span> = <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>                 <span style="color:#75715e">// Line 5
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">z</span> = <span style="color:#a6e22e">x</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">y</span>                   <span style="color:#75715e">// Line 6
+</span><span style="color:#75715e"></span>	println(<span style="color:#a6e22e">z</span>)                  <span style="color:#75715e">// Line 7
+</span><span style="color:#75715e"></span>}                               <span style="color:#75715e">// Line 8
+</span></code></pre></div><p>For the above code, if we set breakpoint at <code>b ./main.go:5</code> and then hit <code>c</code>, the control will stop at line 5 as you can see below.</p>
+<ul>
+<li><code>n</code> will move the control to next line (i.e. line 6).</li>
+<li><code>print &lt;VARIABLE&gt;</code> will print the value of variable. Eg. <code>print x</code> will print <code>1</code> and <code>print y</code> will print <code>2</code>.</li>
+<li><code>n</code> will move the control to next line (i.e. line 7) which is println statement itself.</li>
+<li><code>n</code> will move the control to next line (i.e. line 8). Before moving to next line, it will execute line 7 and print <code>3</code>.</li>
+</ul>
+<p><img src="/img/11_4_dlv_moving.png" alt=""></p>
+<p>Now that we know how the control works and how we can navigate through lines, we can look at <code>step-in</code>. Sometimes we would like to step-in to a function call and iterate over, and then come out of the function.</p>
+<h4 id="example-1">Example:</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>                    <span style="color:#75715e">// Line 1
+</span><span style="color:#75715e"></span>								<span style="color:#75715e">// Line 2
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">y</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {		<span style="color:#75715e">// Line 3
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">y</span>				<span style="color:#75715e">// Line 4
+</span><span style="color:#75715e"></span>}								<span style="color:#75715e">// Line 5
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {                   <span style="color:#75715e">// Line 6
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">y</span>, <span style="color:#a6e22e">z</span> <span style="color:#66d9ef">int</span>             <span style="color:#75715e">// Line 7
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">y</span> = <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>                 <span style="color:#75715e">// Line 8
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">z</span> = <span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">y</span>)               <span style="color:#75715e">// Line 9
+</span><span style="color:#75715e"></span>	println(<span style="color:#a6e22e">z</span>)                  <span style="color:#75715e">// Line 10
+</span><span style="color:#75715e"></span>}                               <span style="color:#75715e">// Line 11
+</span></code></pre></div><p>For the above code, if we set breakpoint at <code>b ./main.go:9</code> and then hit <code>c</code>, the control will stop at line 8 as we can see below.</p>
+<ul>
+<li><code>s</code> will move control to the <code>add</code> method</li>
+<li><code>n</code> will move the control to line 4 and another <code>n</code> will move the control to line 5 and then it will exit the add function. The control will move back to line 9, but this time <code>variable z</code> will have the returned value.</li>
+</ul>
+<p><img src="/img/11_5_dlv_step.png" alt=""></p>
+]]></content></item><item><title>Exploring go pkg - time</title><link>/posts/2021/09/exploring-go-pkg-time/</link><pubDate>Sun, 12 Sep 2021 18:29:08 +0530</pubDate><guid>/posts/2021/09/exploring-go-pkg-time/</guid><description>Go&amp;rsquo;s time package provides a number of functions and types for working with dates and times. Go time formatting is different from other languages. The primary layouts used by the time package are described below.
+const ( UnixDate = &amp;#34;Mon Jan _2 15:04:05 MST 2006&amp;#34; RFC1123 = &amp;#34;Mon, 02 Jan 2006 15:04:05 MST&amp;#34; RFC1123Z = &amp;#34;Mon, 02 Jan 2006 15:04:05 -0700&amp;#34; // RFC1123 with numeric zone RFC3339 = &amp;#34;2006-01-02T15:04:05Z07:00&amp;#34; RFC3339Nano = &amp;#34;2006-01-02T15:04:05.</description><content type="html"><![CDATA[<p>Go&rsquo;s time package provides a number of functions and types for working with dates and times. Go time formatting is different from other languages. The primary layouts used by the time package are described below.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">    <span style="color:#66d9ef">const</span> (
+        <span style="color:#a6e22e">UnixDate</span>    = <span style="color:#e6db74">&#34;Mon Jan _2 15:04:05 MST 2006&#34;</span>
+        <span style="color:#a6e22e">RFC1123</span>     = <span style="color:#e6db74">&#34;Mon, 02 Jan 2006 15:04:05 MST&#34;</span>
+        <span style="color:#a6e22e">RFC1123Z</span>    = <span style="color:#e6db74">&#34;Mon, 02 Jan 2006 15:04:05 -0700&#34;</span> <span style="color:#75715e">// RFC1123 with numeric zone
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">RFC3339</span>     = <span style="color:#e6db74">&#34;2006-01-02T15:04:05Z07:00&#34;</span>
+        <span style="color:#a6e22e">RFC3339Nano</span> = <span style="color:#e6db74">&#34;2006-01-02T15:04:05.999999999Z07:00&#34;</span>
+    )
+</code></pre></div><p>You can define your own formats using the constants.</p>
+<p>Personally, I prefer to use the <code>RFC3339</code> format. One should use the RFC822, RFC850, and RFC1123 formats with local times.</p>
+<blockquote>
+<h4 id="info-timeduration-is-the-unit-used-to-denote-nanosecond">INFO: time.Duration is the unit used to denote nanosecond.</h4>
+</blockquote>
+<h2 id="lets-talk-about-some-functions-available-in-time-pkg">Lets talk about some functions available in time pkg:</h2>
+<ul>
+<li>
+<h3 id="func-afterd-duration--chan-time">func After(d Duration) &lt;-chan Time</h3>
+<p>Returns a channel that will send the current time (t+d) where d is time duration to wait.</p>
+<p><strong>Example</strong>: We will spawn a goroutine that will <code>doSomething</code>. If the <code>doSomething</code> takes more than 5 second to complete, we will get current time from <code>time.After</code> and will break out of the loop.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+        <span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>, <span style="color:#ae81ff">0</span>)
+        <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">doSomething</span>(<span style="color:#a6e22e">c</span>)
+        <span style="color:#a6e22e">OUTER</span>:
+            <span style="color:#66d9ef">for</span> {
+                <span style="color:#66d9ef">select</span> {
+                <span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">c</span>:
+                    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Work Done&#34;</span>)
+                    <span style="color:#66d9ef">break</span> <span style="color:#a6e22e">OUTER</span> <span style="color:#75715e">// break the loop when work is done
+</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">After</span>(<span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>):
+                    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;timed out&#34;</span>)
+                    <span style="color:#66d9ef">break</span> <span style="color:#a6e22e">OUTER</span> <span style="color:#75715e">// break the loop when timed out
+</span><span style="color:#75715e"></span>                }	
+            }
+    }
+
+    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">doSomething</span>(<span style="color:#a6e22e">c</span> <span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>) {
+        <span style="color:#75715e">// Do some work which should finish in max 5 seconds
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)
+        <span style="color:#a6e22e">c</span> <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">2</span>
+    }
+
+</code></pre></div></li>
+</ul>
+<h6 id="heading"></h6>
+<ul>
+<li>
+<h3 id="func-parsedurations-string-duration-error">func ParseDuration(s string) (Duration, error)</h3>
+<p>Parses the duration from string. Valid time units are &lsquo;ns&rsquo;, &lsquo;us&rsquo; (or &lsquo;µs&rsquo;), &lsquo;ms&rsquo;, &rsquo;s', &rsquo;m', &lsquo;h&rsquo;.</p>
+<p><strong>Example</strong>: We will parse the duration from string.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+        <span style="color:#a6e22e">complex</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">ParseDuration</span>(<span style="color:#e6db74">&#34;1h10m10s&#34;</span>)
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;There are %.0f seconds in %v.\n&#34;</span>, <span style="color:#a6e22e">complex</span>.<span style="color:#a6e22e">Seconds</span>(), <span style="color:#a6e22e">complex</span>)
+    }
+</code></pre></div></li>
+</ul>
+<h6 id="heading-1"></h6>
+<ul>
+<li>
+<h3 id="func-d-duration-roundm-duration-duration">func (d Duration) Round(m Duration) Duration</h3>
+<p>Rounds the duration to the nearest multiple of m.</p>
+<p><strong>Example</strong>: We will round the duration to the nearest durations.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+        <span style="color:#a6e22e">d</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">ParseDuration</span>(<span style="color:#e6db74">&#34;1h15m30.918273645s&#34;</span>)
+
+        <span style="color:#75715e">// We are rounding towards nearest second. So, &#34;30.918273645s&#34; becomes &#34;31&#34;.
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;d.Round(%6s) = %s\n&#34;</span>, <span style="color:#a6e22e">r</span>, <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">Round</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>).<span style="color:#a6e22e">String</span>()) <span style="color:#75715e">// d.Round(1s) = 1h15m31s
+</span><span style="color:#75715e"></span>
+        <span style="color:#75715e">// We are rounding towards nearest hour. So, &#34;1h15m30.918273645s&#34; becomes &#34;1h00m00s&#34;.
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;d.Round(%6s) = %s\n&#34;</span>, <span style="color:#a6e22e">r</span>, <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">Round</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Hour</span>).<span style="color:#a6e22e">String</span>()) <span style="color:#75715e">// d.Round(1h0m0s) = 1h0m0s
+</span><span style="color:#75715e"></span>    }
+</code></pre></div></li>
+</ul>
+<h6 id="heading-2"></h6>
+<ul>
+<li>
+<h3 id="func-d-duration-truncatem-duration-duration">func (d Duration) Truncate(m Duration) Duration</h3>
+<p>Truncates the duration to the nearest multiple of m. Similar to round up, truncate will round down to nearest multiple.</p>
+<p><strong>Example</strong>: We will truncate the duration to the nearest durations.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+        <span style="color:#a6e22e">d</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">ParseDuration</span>(<span style="color:#e6db74">&#34;1h15m30.918273645s&#34;</span>)
+
+        <span style="color:#75715e">// We are truncating towards nearest second. So, &#34;30.918273645s&#34; becomes &#34;30&#34;.
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;d.Truncate(%6s) = %s\n&#34;</span>, <span style="color:#a6e22e">r</span>, <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">Truncate</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>).<span style="color:#a6e22e">String</span>()) <span style="color:#75715e">// d.Truncate(1s) = 1h15m30s
+</span><span style="color:#75715e"></span>
+        <span style="color:#75715e">// We are truncating towards nearest hour. So, &#34;1h15m30.918273645s&#34; becomes &#34;1h00m00s&#34;.
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;d.Truncate(%6s) = %s\n&#34;</span>, <span style="color:#a6e22e">r</span>, <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">Truncate</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Hour</span>).<span style="color:#a6e22e">String</span>()) <span style="color:#75715e">// d.Truncate(1h0m0s) = 1h0m0s
+</span><span style="color:#75715e"></span>    }
+</code></pre></div></li>
+</ul>
+<h6 id="heading-3"></h6>
+<ul>
+<li>
+<h3 id="func-newtickerd-duration-ticker">func NewTicker(d Duration) *Ticker</h3>
+<p>Returns a new Ticker containing a channel that will send the time with a period specified by d.</p>
+<ul>
+<li><code>d</code> must be greater than 0, otherwise ticker will panic</li>
+<li>To release resources, we need to stop the ticker using <code>&lt;ticker_instance&gt;.Stop()</code></li>
+</ul>
+<p><strong>Example</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+
+        <span style="color:#a6e22e">ticker</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">NewTicker</span>(<span style="color:#ae81ff">1</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Minute</span>)
+        <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">ticker</span>.<span style="color:#a6e22e">Stop</span>()
+        <span style="color:#66d9ef">go</span> <span style="color:#66d9ef">func</span>() {
+            <span style="color:#66d9ef">for</span> {
+                <span style="color:#66d9ef">select</span> {
+                <span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">ticker</span>.<span style="color:#a6e22e">C</span>:
+                    <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">doSomething</span>()
+                }
+            }
+        }()
+    }
+</code></pre></div></li>
+</ul>
+<h6 id="heading-4"></h6>
+<ul>
+<li>
+<h3 id="func-newtimerd-duration-timer">func NewTimer(d Duration) *Timer</h3>
+<p>The Timer type represents a single event. When the Timer expires, the current time will be sent on C</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+        <span style="color:#a6e22e">timer</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">NewTimer</span>(<span style="color:#ae81ff">1</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Minute</span>)
+        <span style="color:#a6e22e">ch</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">bool</span>)
+        <span style="color:#66d9ef">go</span> <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">ch</span> <span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">bool</span>) {
+            <span style="color:#a6e22e">_</span> = <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">timer</span>.<span style="color:#a6e22e">C</span>
+            <span style="color:#a6e22e">ch</span> <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">true</span>
+        }(<span style="color:#a6e22e">ch</span>)
+
+        <span style="color:#a6e22e">OUTER</span>:
+            <span style="color:#66d9ef">for</span> {
+                <span style="color:#66d9ef">select</span> {
+                    <span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">ch</span>:
+                        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;1 minute done&#34;</span>)
+                        <span style="color:#66d9ef">break</span> <span style="color:#a6e22e">OUTER</span>
+                }
+            }
+    }
+</code></pre></div></li>
+</ul>
+<h6 id="heading-5"></h6>
+<h2 id="some-important-pointers-of-time-struct">Some important pointers of Time struct:</h2>
+<ul>
+<li>A Time represents an instant in time with nanosecond precision.</li>
+<li>Programs using times should typically store and pass them as values, not pointers. That is, time variables and struct fields should be of type time.Time, not *time.Time.</li>
+<li>A Time value can be used by multiple goroutines simultaneously except that the methods GobDecode, UnmarshalBinary, UnmarshalJSON and UnmarshalText are not concurrency-safe.</li>
+<li>Time instants can be compared using the Before, After, and Equal methods.</li>
+<li>(PARSING) For layouts specifying the two-digit year 06, a value NN &gt;= 69 will be treated as 19NN and a value NN &lt; 69 will be treated as 20NN.</li>
+</ul>
+]]></content></item><item><title>Kubernetes: Core Concepts Primer - Part 5</title><link>/posts/2021/08/kubernetes-core-concepts-primer-part-5/</link><pubDate>Sat, 14 Aug 2021 09:30:22 +0530</pubDate><guid>/posts/2021/08/kubernetes-core-concepts-primer-part-5/</guid><description>What are taints and tolerances? Taints are a mechanism to add restrictions to the scheduling of pods. Tolerance is a mechanism to allow pods to be scheduled on nodes with certain conditions.
+To taint a node, use kubectl taint nodes &amp;lt;NODE_NAME&amp;gt; &amp;lt;KEY&amp;gt;=&amp;lt;VALUE&amp;gt;:&amp;lt;TAINT_EFFECT&amp;gt;
+There are three kinds of taint effects:
+NoSchedule: This taint indicates that the node should not be used by pods. PreferNoSchedule: This taint indicates that the node should not be used by pods, but it is not guaranteed.</description><content type="html"><![CDATA[<h2 id="what-are-taints-and-tolerances">What are taints and tolerances?</h2>
+<blockquote>
+<p>Taints are a mechanism to add restrictions to the scheduling of pods. Tolerance is a mechanism to allow pods to be scheduled on nodes with certain conditions.</p>
+</blockquote>
+<p>To taint a node, use <code>kubectl taint nodes &lt;NODE_NAME&gt; &lt;KEY&gt;=&lt;VALUE&gt;:&lt;TAINT_EFFECT&gt;</code></p>
+<p>There are three kinds of taint effects:</p>
+<ul>
+<li><code>NoSchedule</code>: This taint indicates that the node should not be used by pods.</li>
+<li><code>PreferNoSchedule</code>: This taint indicates that the node should not be used by pods, but it is not guaranteed.</li>
+<li><code>NoExecute</code>: This taint indicates that the node should not be used by pods, and if there are existing pods that do not tolerate the taint, they will be terminated.</li>
+</ul>
+<p>Tolerations are added to the pod definition file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Pod</span>
+<span style="color:#f92672">metadata</span>:
+    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">my-pod</span>
+<span style="color:#f92672">spec</span>:
+    <span style="color:#f92672">containers</span>:
+        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">redis</span>
+          <span style="color:#f92672">image</span>: <span style="color:#ae81ff">redis</span>
+    <span style="color:#75715e"># All the values under tolerations have to encoded in double quotes</span>
+    <span style="color:#f92672">tolerations</span>:
+        <span style="color:#f92672">key</span>: <span style="color:#e6db74">&#34;&lt;KEY&gt;&#34;</span>
+        <span style="color:#f92672">operator</span>: <span style="color:#e6db74">&#34;&lt;OPERATOR&gt;&#34;</span> <span style="color:#75715e"># &lt;OPERATOR&gt; can be one of these: &#34;Equal&#34;, &#34;LessThan&#34;, &#34;LessThanOrEqual&#34;, &#34;GreaterThan&#34;, &#34;GreaterThanOrEqual&#34;, &#34;Exists&#34;, &#34;DoesNotExist&#34;, &#34;In&#34;, &#34;NotIn&#34;</span>
+        <span style="color:#f92672">value</span>: <span style="color:#e6db74">&#34;&lt;VALUE&gt;&#34;</span>
+        <span style="color:#f92672">effect</span>: <span style="color:#e6db74">&#34;&lt;TAINT_EFFECT&gt;&#34;</span> <span style="color:#75715e"># &lt;TAINT_EFFECT&gt; can be one of these: &#34;NoSchedule&#34;, &#34;PreferNoSchedule&#34;, &#34;NoExecute&#34;</span>
+</code></pre></div><p>To remove the taint, run <code>kubectl taint nodes &lt;NODE_NAME&gt; &lt;TAINT_NAME&gt;:&lt;TAINT_EFFECT&gt;</code></p>
+<h2 id="what-is-node-selector">What is node selector?</h2>
+<blockquote>
+<p>NodeSelector is a label query over a set of nodes. The node that matches the label query is the one that will be used for scheduling pods.</p>
+</blockquote>
+<p>Let&rsquo;s understand that with an example, say we have a cluster with 2 nodes with 1gb &amp; 2gb memory respectively. We have two pods(A &amp; B), where A runs more resource heavy task. We want to schedule A on node with 2gb memory. We can do that by adding <code>nodeSelector</code> to the pod definition file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Pod</span>
+<span style="color:#f92672">metadata</span>:
+    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">my-pod</span>
+<span style="color:#f92672">spec</span>:
+    <span style="color:#f92672">containers</span>:
+        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">redis</span>
+          <span style="color:#f92672">image</span>: <span style="color:#ae81ff">redis</span>
+    <span style="color:#f92672">nodeSelector</span>:
+        <span style="color:#f92672">size</span>: <span style="color:#ae81ff">&lt;NODE_LABEL&gt;</span>
+</code></pre></div><p><strong>Note</strong>: Ensure that nodes are already labeled with the labels that you want to match. To create a label if its not there, use <code>kubectl label nodes &lt;NODE_NAME&gt; &lt;LABEL_NAME&gt;=&lt;LABEL_VALUE&gt;</code></p>
+<h2 id="what-is-node-affinity">What is node affinity?</h2>
+<blockquote>
+<p>Node affinity is a set of rules used by the scheduler to determine where a pod can be placed</p>
+</blockquote>
+<p>There are currently two types of node affinity:</p>
+<ul>
+<li>
+<p><code>requiredDuringSchedulingIgnoredDuringExecution</code>: Schedule the pod only on the nodes that match the nodeSelector. If no such nodes are available, the scheduler will not schedule the pod on nodes. If the pod is already scheduled on a node, the scheduler will ignore the nodeSelector.</p>
+</li>
+<li>
+<p><code>preferredDuringSchedulingIgnoredDuringExecution</code>: Preference is given for the node that matches the expression but if no such nodes are available, the scheduler will schedule the pod in any available node. If the pod is already scheduled on a node, the scheduler will ignore the nodeSelector.</p>
+</li>
+</ul>
+<p>Example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Pod</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">with-node-affinity</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">affinity</span>:
+    <span style="color:#f92672">nodeAffinity</span>:
+      <span style="color:#f92672">requiredDuringSchedulingIgnoredDuringExecution</span>:
+        <span style="color:#f92672">nodeSelectorTerms</span>:
+        - <span style="color:#f92672">matchExpressions</span>:
+          - <span style="color:#f92672">key</span>: <span style="color:#ae81ff">size</span>
+            <span style="color:#f92672">operator</span>: <span style="color:#ae81ff">In</span>
+            <span style="color:#f92672">values</span>:
+            - <span style="color:#ae81ff">t1.large</span>
+            - <span style="color:#ae81ff">t1.medium</span>
+  <span style="color:#f92672">containers</span>:
+  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">with-node-affinity</span>
+    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">k8s.gcr.io/pause:2.0</span>
+</code></pre></div>]]></content></item><item><title>Kubernetes: Core Concepts Primer - Part 4</title><link>/posts/2021/08/kubernetes-core-concepts-primer-part-4/</link><pubDate>Sat, 07 Aug 2021 09:42:31 +0530</pubDate><guid>/posts/2021/08/kubernetes-core-concepts-primer-part-4/</guid><description>Security Context in Kubernetes Whenever it comes to security, always follow the The principle of least privilege (PlP) principle which states that a subject should be given only those privileges needed for it to complete its task.
+Applying the same principle to kubernetes objects, we should grant a user the privileges needed to perform a task. Thats all, nothing more or nothing less. Giving root permissions to containers is not recommended.</description><content type="html"><![CDATA[<h2 id="security-context-in-kubernetes">Security Context in Kubernetes</h2>
+<p>Whenever it comes to security, always follow the <code>The principle of least privilege</code> (PlP) principle which states that <strong>a subject should be given only those privileges needed for it to complete its task.</strong></p>
+<p>Applying the same principle to kubernetes objects, we should grant a user the privileges needed to perform a task. Thats all, nothing more or nothing less. Giving root permissions to containers is not recommended.</p>
+<h4 id="note-permissions-at-container-level-will-always-override-permisions-at-pod-level">NOTE: Permissions at container level will always override permisions at pod level</h4>
+<ul>
+<li>To set permissions container, use <code>securityContext</code> field in the container definition.</li>
+<li>To set permissions pod, use <code>securityContext</code> field in the pod definition file.</li>
+<li>Capabilities can be added only to the container which are container&rsquo;s user permission</li>
+</ul>
+<p>Example for pod level security context:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Pod</span>
+<span style="color:#f92672">metadata</span>:
+    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">my-pod</span>
+<span style="color:#f92672">securityContext</span>:
+    <span style="color:#f92672">runAsUser</span>: <span style="color:#ae81ff">&lt;USER_ID&gt;</span>
+<span style="color:#f92672">spec</span>:
+    <span style="color:#f92672">containers</span>:
+        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">redis</span>
+          <span style="color:#f92672">image</span>: <span style="color:#ae81ff">redis</span>
+</code></pre></div><p>Example for container level security context:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Pod</span>
+<span style="color:#f92672">metadata</span>:
+    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">my-pod</span>
+<span style="color:#f92672">spec</span>:
+    <span style="color:#f92672">containers</span>:
+        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">redis</span>
+          <span style="color:#f92672">image</span>: <span style="color:#ae81ff">redis</span>
+          <span style="color:#f92672">securityContext</span>:
+            <span style="color:#f92672">runAsUser</span>: <span style="color:#ae81ff">&lt;USER_ID&gt;</span>
+            <span style="color:#f92672">capbilities</span>:
+                <span style="color:#f92672">add</span>: [<span style="color:#e6db74">&#34;SYS_ADMIN&#34;</span>]
+</code></pre></div><h1 id="what-are-user--service-accounts">What are user &amp; service accounts?</h1>
+<blockquote>
+<p>User Accounts are used by developers/adminstrators to perform some administrative tasks. Service accounts are used by applications to perform some tasks. For eg: Jenkins uses service accounts for deployment purposes.</p>
+</blockquote>
+<p>To create a service account, run <code>kubectl create serviceaccount &lt;SERVICE_ACCOUNT_NAME&gt;</code></p>
+<p>Creating a service account creates a token as a secret, that should be used for authentication by the service.</p>
+<p>To add service account in a pod, use <code>serviceAccount</code> field in the same level as <code>containers</code> definition.</p>
+<h1 id="resource-requirements-in-pods">Resource requirements in Pods:</h1>
+<blockquote>
+<p>Resource requirements are a way to specify the amount of resources that a container needs. It is a container level configuration.</p>
+</blockquote>
+<p>In containers array in pod definition, you can specify the resource requirements.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">resources</span>:
+    <span style="color:#f92672">requests</span>:
+        <span style="color:#f92672">cpu</span>: <span style="color:#ae81ff">&lt;CPU_ALLOTED&gt;</span>
+        <span style="color:#f92672">memory</span>: <span style="color:#ae81ff">&lt;MEMORY_ALLOTED&gt;</span>
+    <span style="color:#f92672">limits</span>:
+        <span style="color:#f92672">cpu</span>: <span style="color:#ae81ff">&lt;CPU_LIMIT&gt;</span>
+        <span style="color:#f92672">memory</span>: <span style="color:#ae81ff">&lt;MEMORY_LIMIT&gt;</span>
+</code></pre></div><p>Limits restricts resources extra resources to be used by the container. If a container tried to superceed the cpu limits, the system will kill it.</p>
+<h3 id="create-default-resources-requirements">Create default resources requirements</h3>
+<p>To default the resource requirements for a namespace, create a yaml file</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">LimitRange</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">cpu-limit-range</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">limits</span>:
+  - <span style="color:#f92672">default</span>:
+      <span style="color:#f92672">cpu</span>: <span style="color:#ae81ff">1</span>
+    <span style="color:#f92672">defaultRequest</span>:
+      <span style="color:#f92672">cpu</span>: <span style="color:#ae81ff">0.5</span>
+    <span style="color:#f92672">type</span>: <span style="color:#ae81ff">Container</span>
+</code></pre></div><p>Then, run <code>kubectl apply -f &lt;LIMIT_RANGE_FILE&gt; --namespace=&lt;NAMESPACE_TO_APPLY_TO&gt;</code></p>
+<h3 id="what-are-k8s-cpu--memory-units">What are k8s CPU &amp; Memory units?</h3>
+<ul>
+<li>
+<p><strong>CPU</strong>:</p>
+<p>CPU unit specifies the amount of CPU time that a container can use. Refer the following examples:</p>
+<ul>
+<li>Consider a container using 50m cpu resource. The unit suffix m stands for “thousandth of a core”, so this resources object specifies that the container process needs 50/1000 of a core (5%). Or 5% of a core.</li>
+<li>Consider a container using 2000m cpu resource. In this case, requirement is 2000/1000, which is 2 cores. Instead of 2000m, we can just use integer value 2.</li>
+</ul>
+</li>
+<li>
+<p><strong>Memory</strong>:</p>
+<p>Memory unit specifies the amount of memory that a container can use. It is always measured in bytes. Supported values are:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Unit Name</th>
+<th style="text-align:center">Memory Unit</th>
+<th style="text-align:center">Memory Value(1 unit in bytes)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Kilobyte</td>
+<td style="text-align:center">K</td>
+<td style="text-align:center">1000</td>
+</tr>
+<tr>
+<td style="text-align:center">Megabyte</td>
+<td style="text-align:center">M</td>
+<td style="text-align:center">1,000,000</td>
+</tr>
+<tr>
+<td style="text-align:center">Gigabyte</td>
+<td style="text-align:center">G</td>
+<td style="text-align:center">1,000,000,000</td>
+</tr>
+<tr>
+<td style="text-align:center">Kibibyte</td>
+<td style="text-align:center">Ki</td>
+<td style="text-align:center">1024</td>
+</tr>
+<tr>
+<td style="text-align:center">Mebibyte</td>
+<td style="text-align:center">Mi</td>
+<td style="text-align:center">1,048,576</td>
+</tr>
+<tr>
+<td style="text-align:center">Gibibyte</td>
+<td style="text-align:center">Gi</td>
+<td style="text-align:center">1,073,741,824</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h4 id="continue-reading-kubernetes-core-concepts-primer---part-5k8s-primer-p5"><strong>Continue reading</strong>: <a href="../k8s-primer-p5/">Kubernetes: Core Concepts Primer - Part 5</a></h4>
+]]></content></item><item><title>Kubernetes: Core Concepts Primer - Part 3</title><link>/posts/2021/08/kubernetes-core-concepts-primer-part-3/</link><pubDate>Thu, 05 Aug 2021 18:47:58 +0530</pubDate><guid>/posts/2021/08/kubernetes-core-concepts-primer-part-3/</guid><description>What are ConfigMaps? A ConfigMap allows you to decouple environment-specific configuration from your container images, so that your applications are easily portable.
+Note: ConfigMap does not provide secrecy or encryption. If the data you want to store are confidential, use a Secret rather than a ConfigMap
+Imperative way to create configmaps: kubectl create configmap &amp;lt;CONFIG_NAME&amp;gt; --from-literal=&amp;lt;KEY&amp;gt;=&amp;lt;VALUE&amp;gt; kubectl create configmap &amp;lt;CONFIG_NAME&amp;gt; --from-file=&amp;lt;PATH_TO_FILE&amp;gt; Declarative way to create configmaps: # kubectl create -f &amp;lt;FILE&amp;gt; apiVersion: v1 kind: ConfigMap metadata: name: &amp;lt;CONFIG_NAME&amp;gt; data: &amp;lt;KEY&amp;gt;: &amp;lt;VALUE&amp;gt; To use config map in a pod, you need to mount it to the container.</description><content type="html"><![CDATA[<h2 id="what-are-configmaps">What are ConfigMaps?</h2>
+<blockquote>
+<p>A ConfigMap allows you to decouple environment-specific configuration from your container images, so that your applications are easily portable.</p>
+</blockquote>
+<p><em>Note</em>: ConfigMap does not provide secrecy or encryption. If the data you want to store are confidential, use a Secret rather than a ConfigMap</p>
+<h4 id="imperative-way-to-create-configmaps">Imperative way to create configmaps:</h4>
+<pre tabindex="0"><code>kubectl create configmap &lt;CONFIG_NAME&gt; --from-literal=&lt;KEY&gt;=&lt;VALUE&gt;
+kubectl create configmap &lt;CONFIG_NAME&gt; --from-file=&lt;PATH_TO_FILE&gt;
+</code></pre><h4 id="declarative-way-to-create-configmaps">Declarative way to create configmaps:</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># kubectl create -f &lt;FILE&gt;</span>
+<span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ConfigMap</span>
+<span style="color:#f92672">metadata</span>:
+    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">&lt;CONFIG_NAME&gt;</span>
+<span style="color:#f92672">data</span>:
+    <span style="color:#f92672">&lt;KEY&gt;</span>: <span style="color:#ae81ff">&lt;VALUE&gt;</span>
+</code></pre></div><p>To use config map in a pod, you need to mount it to the container. Refer the example below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Pod</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">configmap-demo-pod</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">containers</span>:
+    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">demo</span>
+      <span style="color:#f92672">image</span>: <span style="color:#ae81ff">alpine</span>
+      <span style="color:#f92672">envFrom</span>:              <span style="color:#75715e"># Fetch complete config from a ConfigMap</span>
+        - <span style="color:#f92672">configMapRef</span>:
+            <span style="color:#f92672">name</span>: <span style="color:#ae81ff">&lt;CONFIG_NAME&gt;</span>
+      <span style="color:#f92672">env</span>:                  <span style="color:#75715e"># Fetch specific key from a ConfigMap</span>
+        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">&lt;KEYNAME_TO_PASS_TO_POD&gt;</span>
+          <span style="color:#f92672">valueFrom</span>:
+            <span style="color:#f92672">configMapKeyRef</span>:
+              <span style="color:#f92672">name</span>: <span style="color:#ae81ff">&lt;CONFIG_NAME&gt;</span>
+              <span style="color:#f92672">key</span>: <span style="color:#ae81ff">&lt;KEYNAME_IN_CONFIG&gt;</span>
+</code></pre></div><h2 id="notes">Notes</h2>
+<ol>
+<li>
+<p>To run a custom command in a container instead of standard command that comes with image, use <code>command</code> param in pod spec.</p>
+</li>
+<li>
+<p>To pass custom args to a container, use <code>args</code> param in pod spec.</p>
+</li>
+<li>
+<p>Remember, you CANNOT edit specifications of an existing POD other than the below.</p>
+<pre tabindex="0"><code>    spec.containers[*].image
+
+    spec.initContainers[*].image
+
+    spec.activeDeadlineSeconds
+
+    spec.tolerations
+</code></pre></li>
+<li>
+<p>For example you cannot edit the environment variables, service accounts, resource limits (all of which we will discuss later) of a running pod. But if you really want to, you have 2 options:</p>
+<ol>
+<li>
+<p>Run the kubectl edit pod <!-- raw HTML omitted --> command.  This will open the pod specification in an editor (vi editor). Then edit the required properties. When you try to save it, you will be denied.
+This is because you are attempting to edit a field on the pod that is not editable.
+A copy of the file with your changes is saved in a temporary location as shown above.
+You can then delete the existing pod by running the command: <code>kubectl delete pod webapp</code>
+Then create a new pod with your changes using the temporary file
+<code>kubectl create -f /tmp/kubectl-edit-acvrq.yaml</code></p>
+</li>
+<li>
+<p>The second option is to extract the pod definition in YAML format to a file using the command <code>kubectl get pod webapp -o yaml &gt; my-new-pod.yaml</code>
+Then make the changes to the exported file using an editor (vi editor). Save the changes. Then delete the existing pod <code>kubectl delete pod webapp</code>
+Then create a new pod with the edited file <code>kubectl create -f my-new-pod.yaml</code></p>
+</li>
+</ol>
+</li>
+<li>
+<p>Edit Deployments</p>
+<p>With Deployments you can easily edit any field/property of the POD template. Since the pod template is a child of the deployment specification,  with every change the deployment will automatically delete and create a new pod with the new changes. So if you are asked to edit a property of a POD part of a deployment you may do that simply by running the command</p>
+<p><code>kubectl edit deployment my-deployment</code></p>
+</li>
+</ol>
+<h4 id="continue-reading-kubernetes-core-concepts-primer---part-4k8s-primer-p4"><strong>Continue reading</strong>: <a href="../k8s-primer-p4/">Kubernetes: Core Concepts Primer - Part 4</a></h4>
+]]></content></item><item><title>Kubernetes: Core Concepts Primer - Part 2</title><link>/posts/2021/08/kubernetes-core-concepts-primer-part-2/</link><pubDate>Thu, 05 Aug 2021 18:14:56 +0530</pubDate><guid>/posts/2021/08/kubernetes-core-concepts-primer-part-2/</guid><description>What are ReplicaSets? A ReplicaSet&amp;rsquo;s purpose is to maintain a stable set of replica Pods running at any given time.
+In short, a ReplicaSet is a monitoring and management tool for Pods that ensures a desired number of Pods are running at any given time based on the selector criteria specified in the ReplicaSet.
+Example:
+# Create a ReplicaSet apiVersion: apps/v1 # Api Version that made replicaset available kind: ReplicaSet # Kind of resource metadata: name: redis-rs labels: type: redis-backend spec: replicas: 3 # Desired number of replicas selector: matchLabels: type: redis-backend # Label selector used for filtering pods template: metadata: name: redis-pod labels: type: redis-backend # Label used by replicaset for identifying pods spec: containers: - name: redis image: redis Commands associated with ReplicaSet:</description><content type="html"><![CDATA[<h2 id="what-are-replicasets">What are ReplicaSets?</h2>
+<blockquote>
+<p>A ReplicaSet&rsquo;s purpose is to maintain a stable set of replica Pods running at any given time.</p>
+</blockquote>
+<p>In short, a ReplicaSet is a monitoring and management tool for Pods that ensures a desired number of Pods are running at any given time based on the selector criteria specified in the ReplicaSet.</p>
+<p>Example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># Create a ReplicaSet</span>
+<span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1  </span> <span style="color:#75715e"># Api Version that made replicaset available</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ReplicaSet     </span> <span style="color:#75715e"># Kind of resource</span>
+<span style="color:#f92672">metadata</span>:
+    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">redis-rs</span>
+    <span style="color:#f92672">labels</span>:
+        <span style="color:#f92672">type</span>: <span style="color:#ae81ff">redis-backend</span>
+<span style="color:#f92672">spec</span>:
+    <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">3</span> <span style="color:#75715e"># Desired number of replicas</span>
+    <span style="color:#f92672">selector</span>:
+        <span style="color:#f92672">matchLabels</span>:
+            <span style="color:#f92672">type</span>: <span style="color:#ae81ff">redis-backend    </span> <span style="color:#75715e"># Label selector used for filtering pods</span>
+    <span style="color:#f92672">template</span>:
+        <span style="color:#f92672">metadata</span>:
+            <span style="color:#f92672">name</span>: <span style="color:#ae81ff">redis-pod</span>
+            <span style="color:#f92672">labels</span>:
+                <span style="color:#f92672">type</span>: <span style="color:#ae81ff">redis-backend</span> <span style="color:#75715e"># Label used by replicaset for identifying pods</span>
+        <span style="color:#f92672">spec</span>:
+            <span style="color:#f92672">containers</span>:
+                - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">redis</span>
+                  <span style="color:#f92672">image</span>: <span style="color:#ae81ff">redis</span>
+</code></pre></div><p>Commands associated with ReplicaSet:</p>
+<ul>
+<li>Create ReplicaSet <code>kubectl create -f &lt;RS_DEFINITION_FILE&gt;</code></li>
+<li>Delete ReplicaSet <code>kubectl delete replicaset &lt;RS_NAME&gt;</code></li>
+<li>List ReplicaSet <code>kubectl get &lt;RS_NAME&gt;</code></li>
+<li>Update ReplicaSet:
+<ul>
+<li>By updating the replicas in the definition file, <code>kubectl replace -f &lt;RS_DEFINITION_FILE&gt;</code></li>
+<li>By updating the replicas in the running ReplicaSet, <code>kubectl scale replicaset &lt;RS_NAME&gt; --replicas=&lt;NUM_REPLICAS&gt;</code>. <strong>Note: This won&rsquo;t update the ReplicaSet definition file.</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="what-are-deployments">What are Deployments?</h2>
+<blockquote>
+<p>A Kubernetes deployment is a resource object in Kubernetes that provides declarative updates to applications. A deployment allows you to describe an application’s life cycle, such as which images to use for the app, the number of pods there should be, and the way in which they should be updated.</p>
+</blockquote>
+<p>Example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># Create a deployment</span>
+<span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1  </span> <span style="color:#75715e"># Api Version that made deployment available</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment     </span> <span style="color:#75715e"># Kind of resource</span>
+<span style="color:#f92672">metadata</span>:
+    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">redis-deployment</span>
+    <span style="color:#f92672">labels</span>:
+        <span style="color:#f92672">type</span>: <span style="color:#ae81ff">redis-backend</span>
+<span style="color:#f92672">spec</span>:
+    <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">3</span> <span style="color:#75715e"># Desired number of replicas</span>
+    <span style="color:#f92672">selector</span>:
+        <span style="color:#f92672">matchLabels</span>:
+            <span style="color:#f92672">type</span>: <span style="color:#ae81ff">redis-backend    </span> <span style="color:#75715e"># Label selector used for filtering pods</span>
+    <span style="color:#f92672">template</span>:
+        <span style="color:#f92672">metadata</span>:
+            <span style="color:#f92672">name</span>: <span style="color:#ae81ff">redis-pod</span>
+            <span style="color:#f92672">labels</span>:
+                <span style="color:#f92672">type</span>: <span style="color:#ae81ff">redis-backend</span> <span style="color:#75715e"># Label used by replicaset for identifying pods</span>
+        <span style="color:#f92672">spec</span>:
+            <span style="color:#f92672">containers</span>:
+                - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">redis</span>
+                  <span style="color:#f92672">image</span>: <span style="color:#ae81ff">redis</span>
+</code></pre></div><p>Imperative command: <code>kubectl create deployment &lt;DEPLOYMENT_NAME&gt; --image=&lt;IMAGE_NAME&gt; --replicas=&lt;REPLICA_COUNT&gt;</code></p>
+<h2 id="what-are-namespaces">What are Namespaces?</h2>
+<blockquote>
+<p>Namespaces are a way to organize clusters into virtual sub-clusters — they can be helpful when different teams or projects share a Kubernetes cluster.</p>
+</blockquote>
+<p>By default, a Kubernetes cluster has a single namespace called <code>default</code>. Unless explicitely specified, all resources created in the cluster will be in the <code>default</code> namespace.</p>
+<p>To create a k8s object in a different namespace, you need to specify the namespace as argument. Eg: <code>kubectl create -f &lt;DEFINITION_FILE&gt; --namespace=&lt;NAMESPACE&gt;</code></p>
+<p>To create a namespace:</p>
+<ul>
+<li>Run <code>kubectl create namespace &lt;NAMESPACE&gt;</code></li>
+<li>Run <code>kubectl create -f &lt;NAMESPACE_DEFINITION_FILE&gt;</code></li>
+</ul>
+<p>Example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># To Create a namespace</span>
+<span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Namespace</span>
+<span style="color:#f92672">metadata</span>:
+    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">dev</span>
+</code></pre></div><p>To view pods in all namespaces: Run <code>kubectl get pods --all-namespaces</code></p>
+<h3 id="resources-in-a-namespace-can-be-restricted-using-the-following-yaml">Resources in a namespace can be restricted using the following yaml:</h3>
+<p><code>kubectl create -f &lt;RESOURCE_QUOTE_DEFINITION_FILE&gt;</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ResourceQuota</span>
+<span style="color:#f92672">metadata</span>:
+    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">dev-rq</span>
+    <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">dev</span>
+<span style="color:#f92672">spec</span>:
+    <span style="color:#f92672">hard</span>:
+        <span style="color:#f92672">pods</span>: <span style="color:#e6db74">&#34;10&#34;</span>
+        <span style="color:#f92672">requests.cpu</span>: <span style="color:#e6db74">&#34;100m&#34;</span>
+</code></pre></div><h4 id="continue-reading-kubernetes-core-concepts-primer---part-3k8s-primer-p3"><strong>Continue reading</strong>: <a href="../k8s-primer-p3/">Kubernetes: Core Concepts Primer - Part 3</a></h4>
+]]></content></item><item><title>Setup CI-CD For Hugo Website Using Github Actions</title><link>/posts/2021/08/setup-ci-cd-for-hugo-website-using-github-actions/</link><pubDate>Mon, 02 Aug 2021 14:55:52 +0530</pubDate><guid>/posts/2021/08/setup-ci-cd-for-hugo-website-using-github-actions/</guid><description>What is CI/CD? Continuous integration (CI) and continuous delivery (CD) embody a culture, set of operating principles, and collection of practices that enable application development teams to deliver code changes more frequently and reliably.
+In short, CI/CD is a way to automate the process of building, testing and deploying code. The cycle of building till deploying is also referred to as pipelining.
+Let&amp;rsquo;s jump right in. Prerequisite: A GitHub account with hugo website and understanding about github pages</description><content type="html"><![CDATA[<p><img src="/img/6_1_ci_cd_banner.jpeg" alt=""></p>
+<h2 id="what-is-cicd">What is CI/CD?</h2>
+<blockquote>
+<p>Continuous integration (CI) and continuous delivery (CD) embody a culture, set of operating principles, and collection of practices that enable application development teams to deliver code changes more frequently and reliably.</p>
+</blockquote>
+<p>In short, CI/CD is a way to automate the process of building, testing and deploying code. The cycle of building till deploying is also referred to as pipelining.</p>
+<h2 id="lets-jump-right-in">Let&rsquo;s jump right in.</h2>
+<p><strong>Prerequisite</strong>: A GitHub account with hugo website and understanding about github pages</p>
+<h3 id="generate-personal-access-tokenpat">Generate Personal Access Token(PAT)</h3>
+<p>To generate a PAT, open <a href="https://github.com/settings/tokens/new">Github Personal Access Token</a>. Ensure that you are logged in to github.
+Give token a self-explanatory name, select <code>workflow</code> scope, expiration <code>No Expiration</code> and then click <code>Generate Token</code>.</p>
+<h3 id="create-hugo-repo-action-secret">Create Hugo Repo Action Secret</h3>
+<p>Once token is generated, copy the token and go-to your hugo repository. Under repo settings, under <code>Secrets</code> section, click on <code>New repository Secret</code> and give it an appropriate name and paste the secret there as shown below.</p>
+<p><img src="/img/6_2_repo_secrets.png" alt=""></p>
+<h3 id="setting-up-github-actions">Setting up Github Actions</h3>
+<p>Click on <code>Actions</code> tab in your hugo repository and click on <code>New</code> button.
+Copy the contents of the below yaml file.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">name</span>: <span style="color:#ae81ff">ci-cd</span>
+
+<span style="color:#75715e"># Controls when the workflow will run</span>
+<span style="color:#f92672">on</span>:
+  <span style="color:#75715e"># Triggers the workflow on push or pull request events but only for the master branch</span>
+  <span style="color:#f92672">push</span>:
+    <span style="color:#f92672">branches</span>: [ <span style="color:#ae81ff">master ]</span>
+
+  <span style="color:#75715e"># Allows you to run this workflow manually from the Actions tab</span>
+  <span style="color:#f92672">workflow_dispatch</span>:
+
+<span style="color:#75715e"># A workflow run is made up of one or more jobs that can run sequentially or in parallel</span>
+<span style="color:#f92672">jobs</span>:
+  <span style="color:#75715e"># This workflow contains a single job called &#34;build&#34;</span>
+  <span style="color:#f92672">build</span>:
+    <span style="color:#75715e"># The type of runner that the job will run on</span>
+    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+
+    <span style="color:#75715e"># Steps represent a sequence of tasks that will be executed as part of the job</span>
+    <span style="color:#f92672">steps</span>:
+      <span style="color:#75715e"># Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it</span>
+      - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v2</span>
+        <span style="color:#f92672">with</span>:
+            <span style="color:#f92672">submodules</span>: <span style="color:#66d9ef">true</span>
+    
+      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Setup hugo</span>
+        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">peaceiris/actions-hugo@v2</span>
+        <span style="color:#f92672">with</span>:
+          <span style="color:#f92672">hugo-version</span>: <span style="color:#e6db74">&#34;latest&#34;</span>
+          <span style="color:#f92672">extended</span>: <span style="color:#66d9ef">true</span>
+      
+      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Build</span>
+        <span style="color:#f92672">run</span>: <span style="color:#ae81ff">hugo --minify</span>
+        
+      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Deploy</span>
+        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">peaceiris/actions-gh-pages@v3</span>
+        <span style="color:#f92672">with</span>:
+          <span style="color:#f92672">personal_token</span>: <span style="color:#ae81ff">${{ secrets.WORKFLOW_TOKEN }}</span>
+          <span style="color:#f92672">external_repository</span>: <span style="color:#ae81ff">goakshit/goakshit.github.io</span> <span style="color:#75715e"># You hugo repository</span>
+          <span style="color:#f92672">publish_dir</span>: <span style="color:#ae81ff">./public</span> <span style="color:#75715e"># Change it to directory where you build your hugo site. By default, it&#39;s public</span>
+          <span style="color:#75715e">#   keep_files: true</span>
+          <span style="color:#f92672">publish_branch</span>: <span style="color:#ae81ff">gh-pages</span> <span style="color:#75715e"># This is the branch where your site will be published</span>
+        <span style="color:#75715e">#   cname: example.com</span>
+</code></pre></div><p>After copying the contents of the yaml file, click on <code>Start commit</code> button on right. It should start the build process.</p>
+<p>Every commit to master branch will trigger the build.</p>
+<blockquote>
+<p>Voila! CI/CD is now setup.</p>
+</blockquote>
+]]></content></item><item><title>Kubernetes: Core Concepts Primer - Part 1</title><link>/posts/2021/07/kubernetes-core-concepts-primer-part-1/</link><pubDate>Thu, 29 Jul 2021 10:16:56 +0530</pubDate><guid>/posts/2021/07/kubernetes-core-concepts-primer-part-1/</guid><description>What is Kubernetes? Kubernetes, also known as K8s, is an open-source system for automating deployment, scaling, and management of containerized applications.
+Components of Kubernetes:
+API Server: Acts as a interface for users, cli, and other services to interact with the k8s system ETCD: Key-Value store that stores the state, metadata etc. Scheduler: A component that distributes work to nodes in the cluster. Controller: Responsible for orchestration of the cluster.</description><content type="html"><![CDATA[<h2 id="what-is-kubernetes">What is Kubernetes?</h2>
+<blockquote>
+<p>Kubernetes, also known as K8s, is an open-source system for automating deployment, scaling, and management of containerized applications.</p>
+</blockquote>
+<p>Components of Kubernetes:</p>
+<ul>
+<li><strong>API Server</strong>: Acts as a interface for users, cli, and other services to interact with the k8s system</li>
+<li><strong>ETCD</strong>: Key-Value store that stores the state, metadata etc.</li>
+<li><strong>Scheduler</strong>: A component that distributes work to nodes in the cluster.</li>
+<li><strong>Controller</strong>: Responsible for orchestration of the cluster. Takes care when nodes go down&hellip;</li>
+<li><strong>Kubelet</strong>: A component that runs on each node in the cluster. Acts as an agent for kubernetes.</li>
+<li><strong>Container Runtime</strong>: Underlying technology that runs the containers like docker.</li>
+</ul>
+<h2 id="what-is-a-pod">What is a Pod?</h2>
+<blockquote>
+<p>A pod is a smallest unit of execution in Kubernetes. A pod is a collection of containers that are scheduled onto a node.</p>
+</blockquote>
+<p>A pod can have a multiple containers but recommeded to have only one container.</p>
+<blockquote>
+<p>Cluster -&gt; Node(n) -&gt; Pod(n) -&gt; Container(1 or n)</p>
+</blockquote>
+<p>The above line represents:</p>
+<ul>
+<li>A cluster can have <em>n</em> nodes.</li>
+<li>A pod can have <em>n</em> containers. Normally, a pod should have 1 container.</li>
+</ul>
+<h2 id="kubernetes-yaml">Kubernetes YAML</h2>
+<blockquote>
+<p>Kubernetes yaml is a template that describes the desired state of the pod, service, replicaset or deployment.</p>
+</blockquote>
+<p>It follows the following format:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">&lt;VERSION&gt;</span> <span style="color:#75715e">#Version of the specification</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">&lt;KIND&gt;</span> <span style="color:#75715e">#Kind of the object like Deployment, Service, Pod or ReplicaSet.</span>
+<span style="color:#f92672">metadata</span>: <span style="color:#ae81ff">&lt;METADATA&gt;</span> <span style="color:#75715e">#It can have a subfields like name, namespace, labels, annotations etc., whatever is supported by k8s.</span>
+<span style="color:#f92672">spec</span>: <span style="color:#ae81ff">&lt;SPECIFICATION&gt;</span>
+</code></pre></div><p><strong>Example</strong>: Pod definition yaml with redis image:
+To create the following pod, run <code>kubectl create -f &lt;YAML&gt;</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Pod</span>
+<span style="color:#f92672">metadata</span>:
+    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">redis-pod</span>
+    <span style="color:#f92672">labels</span>:
+        <span style="color:#f92672">app</span>: <span style="color:#ae81ff">cache</span>
+<span style="color:#f92672">spec</span>:
+    <span style="color:#f92672">containers</span>:
+        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">redis</span>
+          <span style="color:#f92672">image</span>: <span style="color:#ae81ff">redis</span>
+</code></pre></div><p>To fetch details about the pod, run <code>kubectl get pod &lt;POD_NAME&gt;</code>. <em><code>-o wide</code> option is used to get the complete details.</em></p>
+<p>Imperative command to create pod: <code>kubectl run &lt;POD_NAME&gt; --image=&lt;IMAGE_NAME&gt; --port=&lt;PORT&gt;</code></p>
+<h2 id="update-a-pod">Update a POD</h2>
+<ul>
+<li>If you are given a pod definition file, edit that file and use it to create a new Pod or update the existing one using <code>kubectl apply -f &lt;FILE&gt;</code></li>
+<li>If you are not given a definition file, you may extract the definition to a file using the below command:
+<code>kubectl get pod &lt;pod-name&gt; -o yaml &gt; pod-definition.yaml</code> and then edit the file to make the necessary changes, delete and re-create the pod.
+Use the <code>kubectl edit pod &lt;pod-name&gt;</code> command to edit pod properties.</li>
+</ul>
+<h4 id="continue-reading--kubernetes-core-concepts-primer---part-2k8s-primer-p2"><strong>Continue reading</strong>:  <a href="../k8s-primer-p2/">Kubernetes: Core Concepts Primer - Part 2</a></h4>
+]]></content></item><item><title>Get Started With Minikube on MacOS</title><link>/posts/2021/07/get-started-with-minikube-on-macos/</link><pubDate>Wed, 28 Jul 2021 18:05:10 +0530</pubDate><guid>/posts/2021/07/get-started-with-minikube-on-macos/</guid><description>What is Minikube? Minikube is a tool that makes it easy to run Kubernetes locally. It is a one node cluster, where the master and worker processes are on the same machine.
+Setup Minikube On MacOS To get started wiht minikube on macOS, we need to install binary for minikube which can be downloaded using the following command:
+&amp;lt;!-- For x64-86 --&amp;gt; curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-amd64 sudo install minikube-darwin-amd64 /usr/local/bin/minikube &amp;lt;!</description><content type="html"><![CDATA[<p><img src="/img/minikube.jpeg" alt=""></p>
+<h2 id="what-is-minikube">What is Minikube?</h2>
+<blockquote>
+<p>Minikube is a tool that makes it easy to run Kubernetes locally. It is a one node cluster, where the master and worker processes are on the same machine.</p>
+</blockquote>
+<h2 id="setup-minikube-on-macos">Setup Minikube On MacOS</h2>
+<p>To get started wiht minikube on macOS, we need to install binary for minikube which can be downloaded using the following command:</p>
+<pre tabindex="0"><code>&lt;!-- For x64-86 --&gt;
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-amd64
+sudo install minikube-darwin-amd64 /usr/local/bin/minikube
+
+&lt;!-- For x64-86 using homebrew  --&gt;
+brew install minikube
+
+&lt;!-- For arm64 --&gt;
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-arm64
+sudo install minikube-darwin-arm64 /usr/local/bin/minikube
+</code></pre><p>After installing minikube, we can start the minikube cluster using <code>minikube start</code>. It will boot up a node in a cluster.</p>
+<p>To verify the installation, we can run <code>minikube status</code>.
+It should return somthing like this:</p>
+<pre tabindex="0"><code>minikube
+type: Control Plane
+host: Running
+kubelet: Running
+apiserver: Running
+kubeconfig: Configured
+</code></pre><p>Kudos. We have successfully installed minikube on macOS.
+You have a cluster up and running. Now you can run <code>minikube dashboard</code> to open a dashboard.</p>
+]]></content></item><item><title>Deploy hugo blog on github pages</title><link>/posts/2021/02/deploy-hugo-blog-on-github-pages/</link><pubDate>Thu, 11 Feb 2021 00:00:00 +0000</pubDate><guid>/posts/2021/02/deploy-hugo-blog-on-github-pages/</guid><description>What is Hugo? Hugo is a fast and modern static site generator written in Go, and designed to make website creation fun again.
+In short, Hugo is a static website generation tool which transforms markdown into beautiful web pages. One can get started with hundreds of available themes or even create a new one.
+Let&amp;rsquo;s jump right in.
+First of all, we would need to install Hugo. In macOS, it can be installed through homebrew by running brew install hugo Once it is installed, we can create a blog by running hugo new site &amp;lt;BLOG_NAME&amp;gt; Now that the basic blog boilerplate is there, we can serve the blog locally going into blog directory created just now and run hugo server.</description><content type="html"><![CDATA[<h2 id="what-is-hugo">What is Hugo?</h2>
+<blockquote>
+<p>Hugo is a fast and modern static site generator written in Go, and designed to make website creation fun again.</p>
+</blockquote>
+<p>In short, Hugo is a static website generation tool which transforms <a href="https://en.wikipedia.org/wiki/Markdown">markdown</a> into beautiful web pages. One can get started with hundreds of available themes or even create a new one.</p>
+<p>Let&rsquo;s jump right in.</p>
+<ul>
+<li>First of all, we would need to install Hugo. In macOS, it can be installed through homebrew by running <strong><code> brew install hugo</code></strong></li>
+<li>Once it is installed, we can create a blog by running <strong><code> hugo new site &lt;BLOG_NAME&gt;</code></strong></li>
+<li>Now that the basic blog boilerplate is there, we can serve the blog locally going into blog directory created just now and run <strong><code> hugo server</code></strong>. You can open up <strong>localhost:1313</strong> in your browser and you have your blog up and running.</li>
+</ul>
+<p>Now coming to deploying the blog to Github pages.</p>
+<ul>
+<li>We need to create a repository with the name (<strong>&lt;YOUR_GITHUB_USERNAME&gt;.github.io</strong>). While creating a repository, don&rsquo;t add a readme file to it yet and create a repository.</li>
+<li>To deploy the blog, we need to build it. Go to blog directory and run <strong><code> hugo</code></strong>. This will create a <code>public</code> directory or the name that we have configured in <code>config.toml</code> file.</li>
+<li>Now we need to commit files to the repository.</li>
+</ul>
+<pre tabindex="0"><code>git add .
+git remote add origin
+git remote add origin https://github.com/&lt;GITHUB_USERNAME&gt;/&lt;GITHUB_USERNAME&gt;.github.io.git
+git commit -m &quot;Initial commit&quot;
+git push origin master
+</code></pre><ul>
+<li>Now that our files are there in the repository&rsquo;s master branch, we need to push the <code>public</code> directory to gh-pages branch for the website to be available. We will create a subtree from the <code>public</code> directory and push the <code>public</code> directory to <code>gh-pages</code> branch.</li>
+</ul>
+<pre tabindex="0"><code>git add public &amp;&amp; git commit -m &quot;Initial public subtree commit&quot;
+git subtree push --prefix public origin gh-pages
+</code></pre><ul>
+<li>The last step would be to go-to repository settings and under <code>Github pages</code> section, update the Source to <code>gh-pages</code> branch and save it. Our blog should then be available at <strong>https://&lt;YOUR_GITHUB_USERNAME&gt;.github.io</strong></li>
+<li>We created a subtree with only <code>public</code> directory. So whenever we update the website in future, we will commit the changes in the master branch but for changes to be reflected in the website, we need to update the subtree and push the changes to the gh-pages branch. So, after we build the updated blog using <strong><code>hugo</code></strong> command, we need to run the following command that pushes the updated     <code>public</code> directory to <code>gh-pages</code> branch.</li>
+</ul>
+<pre tabindex="0"><code>git push origin `git subtree split --prefix public master`:gh-pages --force
+</code></pre><p>You can add themes, about page and so on. All that information is available at <a href="https://gohugo.io/documentation/">hugodocs</a>. Hope it helps someone who wants to deploy a blog in no time. There is an easier way to deploy that involves storing Hugo code in one repository and build files in another. But I didn&rsquo;t want to create two repo for the same.</p>
+<p>You can reach me out on <a href="https://twitter.com/dharakshit">Twitter</a> or write to <a href="mailto:akshitdhar@live.com">me</a></p>
+]]></content></item><item><title>Welcome to my blog</title><link>/posts/2021/02/welcome-to-my-blog/</link><pubDate>Wed, 10 Feb 2021 00:00:00 +0000</pubDate><guid>/posts/2021/02/welcome-to-my-blog/</guid><description>Diving into blogging. Whatever exciting I come across, I will try to put it down here. Hopefully everyone will enjoy it.</description><content type="html">&lt;p>Diving into blogging. Whatever exciting I come across, I will try to put it down here. Hopefully everyone will enjoy it.&lt;/p></content></item></channel></rss>
