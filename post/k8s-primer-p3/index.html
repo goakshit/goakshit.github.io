@@ -99,11 +99,11 @@ kubectl create configmap &lt;CONFIG_NAME&gt; --from-file=&lt;PATH_TO_FILE&gt;
 <p>Remember, you CANNOT edit specifications of an existing POD other than the below.</p>
 <pre tabindex=0><code>    spec.containers[*].image
 
+    spec.initContainers[*].image
 
+    spec.activeDeadlineSeconds
 
-
-
-
+    spec.tolerations
 </code></pre></li>
 <li>
 <p>For example you cannot edit the environment variables, service accounts, resource limits (all of which we will discuss later) of a running pod. But if you really want to, you have 2 options:</p>
