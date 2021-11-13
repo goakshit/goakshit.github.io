@@ -1,6 +1,6 @@
 [module]
   [[module.imports]]
-    path = "https://github.com/goakshit/hugo-theme-cactus"
+    path = "github.com/monkeyWzr/hugo-theme-cactus"
     disable=false
 
 [params]
@@ -11,7 +11,6 @@
   mainSectionTitle = "Blog"
   BaseURL = "https://goakshit.github.io/"
   logo = "https://golang.org/doc/gopher/favicon.svg"
-  googleAnalyticsID = "G-EEQS586TBX"
 
 [[params.social]]
   name = "github"
@@ -54,3 +53,4 @@ languageCode           = "en-us"
 publishDir             = "public"
 theme                  = ["hugo-theme-cactus"]
 DefaultContentLanguage = "en"
+googleAnalytics        = 'G-EEQS586TBX'
