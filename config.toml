@@ -9,9 +9,9 @@
   description = "Software Engineer | Go | Microservices | Docker | Kubernetes | Avid Reader"
   mainSection = "/"
   mainSectionTitle = "Blog"
-  googleAnalytics = "G-EEQS586TBX"
   BaseURL = "https://goakshit.github.io/"
   logo = "https://golang.org/doc/gopher/favicon.svg"
+  googleAnalyticsAsync = true # use asynchronous tracking. Synchronous tracking by default
 
 [[params.social]]
   name = "github"
@@ -24,6 +24,7 @@
 [[params.social]]
   name = "linkedin"
   link = "https://www.linkedin.com/in/dharakshit/"
+
 
 [[menu.main]]
 name = "Home"
@@ -53,3 +54,8 @@ languageCode           = "en-us"
 publishDir             = "public"
 theme                  = ["hugo-theme-cactus"]
 DefaultContentLanguage = "en"
+googleAnalytics = "G-EEQS586TBX"
+
+# Post page settings
+show_updated = true # default
+showReadTime = true # default
