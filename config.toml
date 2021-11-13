@@ -9,7 +9,7 @@
   description = "Software Engineer | Go | Microservices | Docker | Kubernetes | Avid Reader"
   mainSection = "/"
   mainSectionTitle = "Blog"
-  googleAnalytics = "UA-46466614-4"
+  googleAnalytics = "G-EEQS586TBX"
   BaseURL = "https://goakshit.github.io/"
   logo = "https://golang.org/doc/gopher/favicon.svg"
 
