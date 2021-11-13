@@ -53,8 +53,4 @@ languageCode           = "en-us"
 publishDir             = "public"
 theme                  = ["hugo-theme-cactus"]
 DefaultContentLanguage = "en"
-googleAnalytics = "G-EEQS586TBX"
-
-# Post page settings
-show_updated = true # default
-showReadTime = true # default
+googleAnalytics        = "G-EEQS586TBX"
