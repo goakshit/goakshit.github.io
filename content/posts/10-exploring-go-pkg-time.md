@@ -5,9 +5,6 @@ tags: ["go", "pkg", "time"]
 date: 2021-09-12T18:29:08+05:30
 draft: false
 ---
-
-# Exploring go pkg - time
-
 Go's time package provides a number of functions and types for working with dates and times. Go time formatting is different from other languages. The primary layouts used by the time package are described below. 
 
 ```go

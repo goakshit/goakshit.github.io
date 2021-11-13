@@ -5,9 +5,6 @@ tags: ["kubernetes", "k8s-primer"]
 date: 2021-08-07T09:42:31+05:30
 draft: false
 ---
-
-# Kubernetes: Core Concepts Primer - Part 4
-
 ## Security Context in Kubernetes
 
 Whenever it comes to security, always follow the `The principle of least privilege` (PlP) principle which states that **a subject should be given only those privileges needed for it to complete its task.**
@@ -116,4 +113,4 @@ Then, run `kubectl apply -f <LIMIT_RANGE_FILE> --namespace=<NAMESPACE_TO_APPLY_T
     |Gibibyte| Gi | 1,073,741,824 |
 
 
-## **Continue reading**: [Kubernetes: Core Concepts Primer - Part 5](../k8s-primer-p5/)
+#### **Continue reading**: [Kubernetes: Core Concepts Primer - Part 5](../k8s-primer-p5/)

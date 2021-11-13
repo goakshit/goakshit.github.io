@@ -6,7 +6,6 @@ tags: ["minikube", "macos", "kubernetes", "k8s-primer"]
 draft: false
 ---
 ![](/img/minikube.jpeg)
-# Get Started With Minikube on MacOS
 ## What is Minikube?
 > Minikube is a tool that makes it easy to run Kubernetes locally. It is a one node cluster, where the master and worker processes are on the same machine.
 

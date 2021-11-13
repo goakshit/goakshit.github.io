@@ -7,9 +7,6 @@ draft: false
 ---
 ![](/img/debugging.jpg)
 ###### <a href='https://www.freepik.com/photos/technology'>Technology photo created by pressfoto - www.freepik.com</a>
-
-# Debugging in golang
-
 We all know that debugging is a very important part of development process and sometimes it can become a nightmare. But how can we do it in golang?
 
 > `delve` or `dlv` is a tool that can help us to debug our code. It lets us set breakpoints, get value of variables, step into functions, step over functions, step out of functions, run to a specific line, update the variable values etc.

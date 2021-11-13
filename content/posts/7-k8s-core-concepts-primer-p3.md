@@ -5,9 +5,6 @@ tags: ["kubernetes", "k8s-primer"]
 date: 2021-08-05T18:47:58+05:30
 draft: false
 ---
-
-# Kubernetes: Core Concepts Primer - Part 3
-
 ## What are ConfigMaps?
 > A ConfigMap allows you to decouple environment-specific configuration from your container images, so that your applications are easily portable. 
 
@@ -88,4 +85,4 @@ spec:
 
     `kubectl edit deployment my-deployment`
 
-## **Continue reading**: [Kubernetes: Core Concepts Primer - Part 4](../k8s-primer-p4/)
+#### **Continue reading**: [Kubernetes: Core Concepts Primer - Part 4](../k8s-primer-p4/)

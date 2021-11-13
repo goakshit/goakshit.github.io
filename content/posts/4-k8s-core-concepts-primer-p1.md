@@ -5,9 +5,6 @@ slug: "k8s-primer-p1"
 tags: ["kubernetes", "k8s-primer"]
 draft: false
 ---
-
-# Kubernetes: Core Concepts Primer - Part 1
-
 ## What is Kubernetes?
 > Kubernetes, also known as K8s, is an open-source system for automating deployment, scaling, and management of containerized applications.
 
@@ -68,4 +65,4 @@ Imperative command to create pod: `kubectl run <POD_NAME> --image=<IMAGE_NAME> -
 `kubectl get pod <pod-name> -o yaml > pod-definition.yaml` and then edit the file to make the necessary changes, delete and re-create the pod.
 Use the `kubectl edit pod <pod-name>` command to edit pod properties.
 
-## **Continue reading**: [Kubernetes: Core Concepts Primer - Part 2](../k8s-primer-p2/)
+#### **Continue reading**:  [Kubernetes: Core Concepts Primer - Part 2](../k8s-primer-p2/)

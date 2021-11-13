@@ -6,8 +6,6 @@ date: 2021-08-02T14:55:52+05:30
 draft: false
 ---
 ![](/img/6_1_ci_cd_banner.jpeg)
-# Setup CI/CD For Hugo Website Using Github Actions
-
 ## What is CI/CD?
 > Continuous integration (CI) and continuous delivery (CD) embody a culture, set of operating principles, and collection of practices that enable application development teams to deliver code changes more frequently and reliably.
 

@@ -5,9 +5,6 @@ tags: ["kubernetes", "k8s-primer"]
 date: 2021-08-05T18:14:56+05:30
 draft: false
 ---
-
-# Kubernetes: Core Concepts Primer - Part 2
-
 ## What are ReplicaSets?
 > A ReplicaSet's purpose is to maintain a stable set of replica Pods running at any given time.
 
@@ -114,4 +111,4 @@ spec:
         requests.cpu: "100m"
 ```
 
-## **Continue reading**: [Kubernetes: Core Concepts Primer - Part 3](../k8s-primer-p3/)
+#### **Continue reading**: [Kubernetes: Core Concepts Primer - Part 3](../k8s-primer-p3/)
