@@ -7,7 +7,7 @@ baseURL = "https://goakshit.github.com"
 enableEmoji = true
 title   = "ADs Blog"
 languageCode = "en-us"
-theme = "hello-friend-ng"
+theme = "dark"
 
 PygmentsCodeFences = true
 PygmentsStyle = "monokai"
@@ -61,7 +61,7 @@ disableHugoGeneratorInject = false
   # Metadata mostly used in document's head
   # 
   description = "Akshit Dhar Blog"
-  keywords = "blog,tech,golang"
+  keywords = "blog,tech,golang,blockchain"
   images = [""]
 
   # Home subtitle of the index page.
