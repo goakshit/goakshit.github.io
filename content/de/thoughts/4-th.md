@@ -5,5 +5,5 @@ slug: "th-4"
 draft: false
 ---
 
-### Crashkurs Rust heute abgeschlossen. Rost ist AN.
+### Crashkurs Rust heute abgeschlossen. Rust ist AN.
 Das ist alles.
