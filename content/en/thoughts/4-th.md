@@ -5,5 +5,5 @@ slug: "th-4"
 draft: false
 ---
 
-# Finished rust crash course today. Rust is ON.
+### Finished rust crash course today. Rust is ON.
 That's all folks.

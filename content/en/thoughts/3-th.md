@@ -6,5 +6,5 @@ draft: false
 ---
 
 
-# Started exploring Rust(https://rust-lang.org/) today!!!! Excited.
+### Started exploring Rust(https://rust-lang.org/) today!!!! Excited.
 That's all folks.
