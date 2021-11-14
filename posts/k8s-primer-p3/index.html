@@ -4,15 +4,15 @@
 <meta http-equiv=x-ua-compatible content="ie=edge">
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
 <meta name=author content="Akshit Dhar ">
-<meta name=description content="What is CI/CD?  Continuous integration (CI) and continuous delivery (CD) embody a culture, set of operating principles, and collection of practices that enable application development teams to deliver code changes more frequently and reliably.
- In short, CI/CD is a way to automate the process of building, testing and deploying code. The cycle of building till deploying is also referred to as pipelining.
-Let&amp;rsquo;s jump right in. Prerequisite: A GitHub account with hugo website and understanding about github pages">
-<meta name=keywords content="blog,tech,golang,blockchain,hugo,ci-cd,github-actions">
+<meta name=description content="What are ConfigMaps?  A ConfigMap allows you to decouple environment-specific configuration from your container images, so that your applications are easily portable.
+ Note: ConfigMap does not provide secrecy or encryption. If the data you want to store are confidential, use a Secret rather than a ConfigMap
+Imperative way to create configmaps: kubectl create configmap &amp;lt;CONFIG_NAME&amp;gt; --from-literal=&amp;lt;KEY&amp;gt;=&amp;lt;VALUE&amp;gt; kubectl create configmap &amp;lt;CONFIG_NAME&amp;gt; --from-file=&amp;lt;PATH_TO_FILE&amp;gt; Declarative way to create configmaps: # kubectl create -f &amp;lt;FILE&amp;gt; apiVersion: v1 kind: ConfigMap metadata: name: &amp;lt;CONFIG_NAME&amp;gt; data: &amp;lt;KEY&amp;gt;: &amp;lt;VALUE&amp;gt; To use config map in a pod, you need to mount it to the container.">
+<meta name=keywords content="blog,tech,golang,blockchain,kubernetes,k8s-primer">
 <meta name=robots content="noodp">
 <meta name=theme-color content>
-<link rel=canonical href=https://goakshit.github.com/posts/2021/08/setup-ci-cd-for-hugo-website-using-github-actions/>
+<link rel=canonical href=https://goakshit.github.com/posts/k8s-primer-p3/>
 <title>
-Setup CI-CD For Hugo Website Using Github Actions :: Akshit Dhar
+Kubernetes: Core Concepts Primer - Part 3 :: Akshit Dhar
 </title>
 <link href=https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css rel=stylesheet type=text/css>
 <link rel=stylesheet href=/main.17863a81d979b637a02cd7632a4d86e9d80563ef460fd6af1a56962efcaa066b.css>
@@ -24,28 +24,28 @@ Setup CI-CD For Hugo Website Using Github Actions :: Akshit Dhar
 <link rel="shortcut icon" href=/favicon.ico>
 <meta name=msapplication-TileColor content>
 <meta name=theme-color content>
-<meta itemprop=name content="Setup CI-CD For Hugo Website Using Github Actions">
-<meta itemprop=description content="What is CI/CD?  Continuous integration (CI) and continuous delivery (CD) embody a culture, set of operating principles, and collection of practices that enable application development teams to deliver code changes more frequently and reliably.
- In short, CI/CD is a way to automate the process of building, testing and deploying code. The cycle of building till deploying is also referred to as pipelining.
-Let&rsquo;s jump right in. Prerequisite: A GitHub account with hugo website and understanding about github pages"><meta itemprop=datePublished content="2021-08-02T14:55:52+05:30">
-<meta itemprop=dateModified content="2021-08-02T14:55:52+05:30">
-<meta itemprop=wordCount content="408"><meta itemprop=image content="https://goakshit.github.com">
-<meta itemprop=keywords content="hugo,ci-cd,github-actions,">
+<meta itemprop=name content="Kubernetes: Core Concepts Primer - Part 3">
+<meta itemprop=description content="What are ConfigMaps?  A ConfigMap allows you to decouple environment-specific configuration from your container images, so that your applications are easily portable.
+ Note: ConfigMap does not provide secrecy or encryption. If the data you want to store are confidential, use a Secret rather than a ConfigMap
+Imperative way to create configmaps: kubectl create configmap <CONFIG_NAME> --from-literal=<KEY>=<VALUE> kubectl create configmap <CONFIG_NAME> --from-file=<PATH_TO_FILE> Declarative way to create configmaps: # kubectl create -f <FILE> apiVersion: v1 kind: ConfigMap metadata: name: <CONFIG_NAME> data: <KEY>: <VALUE> To use config map in a pod, you need to mount it to the container."><meta itemprop=datePublished content="2021-08-05T18:47:58+05:30">
+<meta itemprop=dateModified content="2021-08-05T18:47:58+05:30">
+<meta itemprop=wordCount content="470"><meta itemprop=image content="https://goakshit.github.com">
+<meta itemprop=keywords content="kubernetes,k8s-primer,">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://goakshit.github.com">
-<meta name=twitter:title content="Setup CI-CD For Hugo Website Using Github Actions">
-<meta name=twitter:description content="What is CI/CD?  Continuous integration (CI) and continuous delivery (CD) embody a culture, set of operating principles, and collection of practices that enable application development teams to deliver code changes more frequently and reliably.
- In short, CI/CD is a way to automate the process of building, testing and deploying code. The cycle of building till deploying is also referred to as pipelining.
-Let&rsquo;s jump right in. Prerequisite: A GitHub account with hugo website and understanding about github pages">
-<meta property="og:title" content="Setup CI-CD For Hugo Website Using Github Actions">
-<meta property="og:description" content="What is CI/CD?  Continuous integration (CI) and continuous delivery (CD) embody a culture, set of operating principles, and collection of practices that enable application development teams to deliver code changes more frequently and reliably.
- In short, CI/CD is a way to automate the process of building, testing and deploying code. The cycle of building till deploying is also referred to as pipelining.
-Let&rsquo;s jump right in. Prerequisite: A GitHub account with hugo website and understanding about github pages">
+<meta name=twitter:title content="Kubernetes: Core Concepts Primer - Part 3">
+<meta name=twitter:description content="What are ConfigMaps?  A ConfigMap allows you to decouple environment-specific configuration from your container images, so that your applications are easily portable.
+ Note: ConfigMap does not provide secrecy or encryption. If the data you want to store are confidential, use a Secret rather than a ConfigMap
+Imperative way to create configmaps: kubectl create configmap <CONFIG_NAME> --from-literal=<KEY>=<VALUE> kubectl create configmap <CONFIG_NAME> --from-file=<PATH_TO_FILE> Declarative way to create configmaps: # kubectl create -f <FILE> apiVersion: v1 kind: ConfigMap metadata: name: <CONFIG_NAME> data: <KEY>: <VALUE> To use config map in a pod, you need to mount it to the container.">
+<meta property="og:title" content="Kubernetes: Core Concepts Primer - Part 3">
+<meta property="og:description" content="What are ConfigMaps?  A ConfigMap allows you to decouple environment-specific configuration from your container images, so that your applications are easily portable.
+ Note: ConfigMap does not provide secrecy or encryption. If the data you want to store are confidential, use a Secret rather than a ConfigMap
+Imperative way to create configmaps: kubectl create configmap <CONFIG_NAME> --from-literal=<KEY>=<VALUE> kubectl create configmap <CONFIG_NAME> --from-file=<PATH_TO_FILE> Declarative way to create configmaps: # kubectl create -f <FILE> apiVersion: v1 kind: ConfigMap metadata: name: <CONFIG_NAME> data: <KEY>: <VALUE> To use config map in a pod, you need to mount it to the container.">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://goakshit.github.com/posts/2021/08/setup-ci-cd-for-hugo-website-using-github-actions/"><meta property="og:image" content="https://goakshit.github.com"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2021-08-02T14:55:52+05:30">
-<meta property="article:modified_time" content="2021-08-02T14:55:52+05:30"><meta property="og:site_name" content="Akshit Dhar">
-<meta property="article:published_time" content="2021-08-02 14:55:52 +0530 +0530">
+<meta property="og:url" content="https://goakshit.github.com/posts/k8s-primer-p3/"><meta property="og:image" content="https://goakshit.github.com"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2021-08-05T18:47:58+05:30">
+<meta property="article:modified_time" content="2021-08-05T18:47:58+05:30"><meta property="og:site_name" content="Akshit Dhar">
+<meta property="article:published_time" content="2021-08-05 18:47:58 +0530 +0530">
 <script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-46466614-6','auto'),ga('send','pageview'))</script>
 </head>
 <body>
@@ -82,150 +82,161 @@ Let&rsquo;s jump right in. Prerequisite: A GitHub account with hugo website and 
 <main class=post>
 <div class=post-info>
 <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-2 minutes
+3 minutes
 </p>
 </div>
 <article>
 <h1 class=post-title>
-<a href=https://goakshit.github.com/posts/2021/08/setup-ci-cd-for-hugo-website-using-github-actions/>Setup CI-CD For Hugo Website Using Github Actions</a>
+<a href=https://goakshit.github.com/posts/k8s-primer-p3/>Kubernetes: Core Concepts Primer - Part 3</a>
 </h1>
 <div class=post-content>
-<p><img src=/img/6_1_ci_cd_banner.jpeg alt></p>
-<h2 id=what-is-cicd>What is CI/CD?</h2>
+<h2 id=what-are-configmaps>What are ConfigMaps?</h2>
 <blockquote>
-<p>Continuous integration (CI) and continuous delivery (CD) embody a culture, set of operating principles, and collection of practices that enable application development teams to deliver code changes more frequently and reliably.</p>
+<p>A ConfigMap allows you to decouple environment-specific configuration from your container images, so that your applications are easily portable.</p>
 </blockquote>
-<p>In short, CI/CD is a way to automate the process of building, testing and deploying code. The cycle of building till deploying is also referred to as pipelining.</p>
-<h2 id=lets-jump-right-in>Let&rsquo;s jump right in.</h2>
-<p><strong>Prerequisite</strong>: A GitHub account with hugo website and understanding about github pages</p>
-<h3 id=generate-personal-access-tokenpat>Generate Personal Access Token(PAT)</h3>
-<p>To generate a PAT, open <a href=https://github.com/settings/tokens/new>Github Personal Access Token</a>. Ensure that you are logged in to github.
-Give token a self-explanatory name, select <code>workflow</code> scope, expiration <code>No Expiration</code> and then click <code>Generate Token</code>.</p>
-<h3 id=create-hugo-repo-action-secret>Create Hugo Repo Action Secret</h3>
-<p>Once token is generated, copy the token and go-to your hugo repository. Under repo settings, under <code>Secrets</code> section, click on <code>New repository Secret</code> and give it an appropriate name and paste the secret there as shown below.</p>
-<p><img src=/img/6_2_repo_secrets.png alt></p>
-<h3 id=setting-up-github-actions>Setting up Github Actions</h3>
-<p>Click on <code>Actions</code> tab in your hugo repository and click on <code>New</code> button.
-Copy the contents of the below yaml file.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>name</span>: <span style=color:#ae81ff>ci-cd</span>
+<p><em>Note</em>: ConfigMap does not provide secrecy or encryption. If the data you want to store are confidential, use a Secret rather than a ConfigMap</p>
+<h4 id=imperative-way-to-create-configmaps>Imperative way to create configmaps:</h4>
+<pre tabindex=0><code>kubectl create configmap &lt;CONFIG_NAME&gt; --from-literal=&lt;KEY&gt;=&lt;VALUE&gt;
+kubectl create configmap &lt;CONFIG_NAME&gt; --from-file=&lt;PATH_TO_FILE&gt;
+</code></pre><h4 id=declarative-way-to-create-configmaps>Declarative way to create configmaps:</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#75715e># kubectl create -f &lt;FILE&gt;</span>
+<span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>v1</span>
+<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>ConfigMap</span>
+<span style=color:#f92672>metadata</span>:
+    <span style=color:#f92672>name</span>: <span style=color:#ae81ff>&lt;CONFIG_NAME&gt;</span>
+<span style=color:#f92672>data</span>:
+    <span style=color:#f92672>&lt;KEY&gt;</span>: <span style=color:#ae81ff>&lt;VALUE&gt;</span>
+</code></pre></div><p>To use config map in a pod, you need to mount it to the container. Refer the example below:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>v1</span>
+<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Pod</span>
+<span style=color:#f92672>metadata</span>:
+  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>configmap-demo-pod</span>
+<span style=color:#f92672>spec</span>:
+  <span style=color:#f92672>containers</span>:
+    - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>demo</span>
+      <span style=color:#f92672>image</span>: <span style=color:#ae81ff>alpine</span>
+      <span style=color:#f92672>envFrom</span>:              <span style=color:#75715e># Fetch complete config from a ConfigMap</span>
+        - <span style=color:#f92672>configMapRef</span>:
+            <span style=color:#f92672>name</span>: <span style=color:#ae81ff>&lt;CONFIG_NAME&gt;</span>
+      <span style=color:#f92672>env</span>:                  <span style=color:#75715e># Fetch specific key from a ConfigMap</span>
+        - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>&lt;KEYNAME_TO_PASS_TO_POD&gt;</span>
+          <span style=color:#f92672>valueFrom</span>:
+            <span style=color:#f92672>configMapKeyRef</span>:
+              <span style=color:#f92672>name</span>: <span style=color:#ae81ff>&lt;CONFIG_NAME&gt;</span>
+              <span style=color:#f92672>key</span>: <span style=color:#ae81ff>&lt;KEYNAME_IN_CONFIG&gt;</span>
+</code></pre></div><h2 id=notes>Notes</h2>
+<ol>
+<li>
+<p>To run a custom command in a container instead of standard command that comes with image, use <code>command</code> param in pod spec.</p>
+</li>
+<li>
+<p>To pass custom args to a container, use <code>args</code> param in pod spec.</p>
+</li>
+<li>
+<p>Remember, you CANNOT edit specifications of an existing POD other than the below.</p>
+<pre tabindex=0><code>    spec.containers[*].image
 
-<span style=color:#75715e># Controls when the workflow will run</span>
-<span style=color:#f92672>on</span>:
-  <span style=color:#75715e># Triggers the workflow on push or pull request events but only for the master branch</span>
-  <span style=color:#f92672>push</span>:
-    <span style=color:#f92672>branches</span>: [ <span style=color:#ae81ff>master ]</span>
+    spec.initContainers[*].image
 
-  <span style=color:#75715e># Allows you to run this workflow manually from the Actions tab</span>
-  <span style=color:#f92672>workflow_dispatch</span>:
+    spec.activeDeadlineSeconds
 
-<span style=color:#75715e># A workflow run is made up of one or more jobs that can run sequentially or in parallel</span>
-<span style=color:#f92672>jobs</span>:
-  <span style=color:#75715e># This workflow contains a single job called &#34;build&#34;</span>
-  <span style=color:#f92672>build</span>:
-    <span style=color:#75715e># The type of runner that the job will run on</span>
-    <span style=color:#f92672>runs-on</span>: <span style=color:#ae81ff>ubuntu-latest</span>
-
-    <span style=color:#75715e># Steps represent a sequence of tasks that will be executed as part of the job</span>
-    <span style=color:#f92672>steps</span>:
-      <span style=color:#75715e># Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it</span>
-      - <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/checkout@v2</span>
-        <span style=color:#f92672>with</span>:
-            <span style=color:#f92672>submodules</span>: <span style=color:#66d9ef>true</span>
-    
-      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Setup hugo</span>
-        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>peaceiris/actions-hugo@v2</span>
-        <span style=color:#f92672>with</span>:
-          <span style=color:#f92672>hugo-version</span>: <span style=color:#e6db74>&#34;latest&#34;</span>
-          <span style=color:#f92672>extended</span>: <span style=color:#66d9ef>true</span>
-      
-      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Build</span>
-        <span style=color:#f92672>run</span>: <span style=color:#ae81ff>hugo --minify</span>
-        
-      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Deploy</span>
-        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>peaceiris/actions-gh-pages@v3</span>
-        <span style=color:#f92672>with</span>:
-          <span style=color:#f92672>personal_token</span>: <span style=color:#ae81ff>${{ secrets.WORKFLOW_TOKEN }}</span>
-          <span style=color:#f92672>external_repository</span>: <span style=color:#ae81ff>goakshit/goakshit.github.io</span> <span style=color:#75715e># You hugo repository</span>
-          <span style=color:#f92672>publish_dir</span>: <span style=color:#ae81ff>./public</span> <span style=color:#75715e># Change it to directory where you build your hugo site. By default, it&#39;s public</span>
-          <span style=color:#75715e>#   keep_files: true</span>
-          <span style=color:#f92672>publish_branch</span>: <span style=color:#ae81ff>gh-pages</span> <span style=color:#75715e># This is the branch where your site will be published</span>
-        <span style=color:#75715e>#   cname: example.com</span>
-</code></pre></div><p>After copying the contents of the yaml file, click on <code>Start commit</code> button on right. It should start the build process.</p>
-<p>Every commit to master branch will trigger the build.</p>
-<blockquote>
-<p>Voila! CI/CD is now setup.</p>
-</blockquote>
+    spec.tolerations
+</code></pre></li>
+<li>
+<p>For example you cannot edit the environment variables, service accounts, resource limits (all of which we will discuss later) of a running pod. But if you really want to, you have 2 options:</p>
+<ol>
+<li>
+<p>Run the kubectl edit pod command. This will open the pod specification in an editor (vi editor). Then edit the required properties. When you try to save it, you will be denied.
+This is because you are attempting to edit a field on the pod that is not editable.
+A copy of the file with your changes is saved in a temporary location as shown above.
+You can then delete the existing pod by running the command: <code>kubectl delete pod webapp</code>
+Then create a new pod with your changes using the temporary file
+<code>kubectl create -f /tmp/kubectl-edit-acvrq.yaml</code></p>
+</li>
+<li>
+<p>The second option is to extract the pod definition in YAML format to a file using the command <code>kubectl get pod webapp -o yaml > my-new-pod.yaml</code>
+Then make the changes to the exported file using an editor (vi editor). Save the changes. Then delete the existing pod <code>kubectl delete pod webapp</code>
+Then create a new pod with the edited file <code>kubectl create -f my-new-pod.yaml</code></p>
+</li>
+</ol>
+</li>
+<li>
+<p>Edit Deployments</p>
+<p>With Deployments you can easily edit any field/property of the POD template. Since the pod template is a child of the deployment specification, with every change the deployment will automatically delete and create a new pod with the new changes. So if you are asked to edit a property of a POD part of a deployment you may do that simply by running the command</p>
+<p><code>kubectl edit deployment my-deployment</code></p>
+</li>
+</ol>
+<h4 id=continue-reading-kubernetes-core-concepts-primer---part-4k8s-primer-p4><strong>Continue reading</strong>: <a href=../k8s-primer-p4/>Kubernetes: Core Concepts Primer - Part 4</a></h4>
 </div>
 </article>
 <hr>
 <div class=post-info>
 <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7" y2="7"/></svg>
-<span class=tag><a href=https://goakshit.github.com/tags/hugo/>hugo</a></span>
-<span class=tag><a href=https://goakshit.github.com/tags/ci-cd/>ci-cd</a></span>
-<span class=tag><a href=https://goakshit.github.com/tags/github-actions/>github-actions</a></span>
+<span class=tag><a href=https://goakshit.github.com/tags/kubernetes/>kubernetes</a></span>
+<span class=tag><a href=https://goakshit.github.com/tags/k8s-primer/>k8s-primer</a></span>
 </p>
 <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6A2 2 0 004 4v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-408 Words
+470 Words
 </p>
 <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-2021-08-02 09:25
+2021-08-05 13:17
 </p>
 </div>
 <hr>
 <div class=sharing-buttons>
-<a class=resp-sharing-button__link href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fgoakshit.github.com%2fposts%2f2021%2f08%2fsetup-ci-cd-for-hugo-website-using-github-actions%2f" target=_blank rel=noopener aria-label title="Share on facebook">
+<a class=resp-sharing-button__link href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fgoakshit.github.com%2fposts%2fk8s-primer-p3%2f" target=_blank rel=noopener aria-label title="Share on facebook">
 <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"><div aria-hidden=true class="resp-sharing-button__icon resp-sharing-button__icon--solid"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
 </div>
 </div>
 </a>
-<a class=resp-sharing-button__link href="https://twitter.com/intent/tweet/?url=https%3a%2f%2fgoakshit.github.com%2fposts%2f2021%2f08%2fsetup-ci-cd-for-hugo-website-using-github-actions%2f" target=_blank rel=noopener aria-label title="Share on twitter">
+<a class=resp-sharing-button__link href="https://twitter.com/intent/tweet/?url=https%3a%2f%2fgoakshit.github.com%2fposts%2fk8s-primer-p3%2f" target=_blank rel=noopener aria-label title="Share on twitter">
 <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small">
 <div aria-hidden=true class="resp-sharing-button__icon resp-sharing-button__icon--solid"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9.0 01-3.14 1.53 4.48 4.48.0 00-7.86 3v1A10.66 10.66.0 013 4s-4 9 5 13a11.64 11.64.0 01-7 2c9 5 20 0 20-11.5a4.5 4.5.0 00-.08-.83A7.72 7.72.0 0023 3z"/></svg>
 </div>
 </div>
 </a>
-<a class=resp-sharing-button__link href="https://www.tumblr.com/widgets/share/tool?posttype=link&title=Setup%20CI-CD%20For%20Hugo%20Website%20Using%20Github%20Actions&caption=Setup%20CI-CD%20For%20Hugo%20Website%20Using%20Github%20Actions&canonicalUrl=https%3a%2f%2fgoakshit.github.com%2fposts%2f2021%2f08%2fsetup-ci-cd-for-hugo-website-using-github-actions%2f" target=_blank rel=noopener aria-label title="Share on tumblr">
+<a class=resp-sharing-button__link href="https://www.tumblr.com/widgets/share/tool?posttype=link&title=Kubernetes%3a%20Core%20Concepts%20Primer%20-%20Part%203&caption=Kubernetes%3a%20Core%20Concepts%20Primer%20-%20Part%203&canonicalUrl=https%3a%2f%2fgoakshit.github.com%2fposts%2fk8s-primer-p3%2f" target=_blank rel=noopener aria-label title="Share on tumblr">
 <div class="resp-sharing-button resp-sharing-button--tumblr resp-sharing-button--small">
 <div aria-hidden=true class="resp-sharing-button__icon resp-sharing-button__icon--solid"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentcolor" stroke="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.563 24c-5.093.0-7.031-3.756-7.031-6.411V9.747H5.116V6.648c3.63-1.313 4.512-4.596 4.71-6.469C9.84.051 9.941.0 9.999.0h3.517v6.114h4.801v3.633h-4.82v7.47c.016 1.001.375 2.371 2.207 2.371h.09c.631-.02 1.486-.205 1.936-.419l1.156 3.425c-.436.636-2.4 1.374-4.156 1.404h-.178l.011.002z"/></svg>
 </div>
 </div>
 </a>
-<a class=resp-sharing-button__link href="mailto:?subject=Setup%20CI-CD%20For%20Hugo%20Website%20Using%20Github%20Actions&body=https%3a%2f%2fgoakshit.github.com%2fposts%2f2021%2f08%2fsetup-ci-cd-for-hugo-website-using-github-actions%2f" target=_self rel=noopener aria-label title="Share via email">
+<a class=resp-sharing-button__link href="mailto:?subject=Kubernetes%3a%20Core%20Concepts%20Primer%20-%20Part%203&body=https%3a%2f%2fgoakshit.github.com%2fposts%2fk8s-primer-p3%2f" target=_self rel=noopener aria-label title="Share via email">
 <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--small"><div aria-hidden=true class="resp-sharing-button__icon resp-sharing-button__icon--solid"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
 </div>
 </div>
 </a>
-<a class=resp-sharing-button__link href="https://pinterest.com/pin/create/button/?url=https%3a%2f%2fgoakshit.github.com%2fposts%2f2021%2f08%2fsetup-ci-cd-for-hugo-website-using-github-actions%2f&media=https%3a%2f%2fgoakshit.github.com%2fposts%2f2021%2f08%2fsetup-ci-cd-for-hugo-website-using-github-actions%2f;description=Setup%20CI-CD%20For%20Hugo%20Website%20Using%20Github%20Actions" target=_blank rel=noopener aria-label title="Share on pinterest">
+<a class=resp-sharing-button__link href="https://pinterest.com/pin/create/button/?url=https%3a%2f%2fgoakshit.github.com%2fposts%2fk8s-primer-p3%2f&media=https%3a%2f%2fgoakshit.github.com%2fposts%2fk8s-primer-p3%2f;description=Kubernetes%3a%20Core%20Concepts%20Primer%20-%20Part%203" target=_blank rel=noopener aria-label title="Share on pinterest">
 <div class="resp-sharing-button resp-sharing-button--pinterest resp-sharing-button--small"><div aria-hidden=true class="resp-sharing-button__icon resp-sharing-button__icon--solid"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentcolor" stroke="none"><path d="M12.017.0C5.396.0.029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024.0 1.518.769 1.518 1.688.0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128.0 3.768-2.245 3.768-5.487.0-2.861-2.063-4.869-5.008-4.869-3.41.0-5.409 2.562-5.409 5.199.0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646.0-3.776 2.748-7.252 7.92-7.252 4.158.0 7.392 2.967 7.392 6.923.0 4.135-2.607 7.462-6.233 7.462-1.214.0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607.0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017.0z"/></svg>
 </div>
 </div>
 </a>
-<a class=resp-sharing-button__link href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fgoakshit.github.com%2fposts%2f2021%2f08%2fsetup-ci-cd-for-hugo-website-using-github-actions%2f&title=Setup%20CI-CD%20For%20Hugo%20Website%20Using%20Github%20Actions&summary=Setup%20CI-CD%20For%20Hugo%20Website%20Using%20Github%20Actions&source=https%3a%2f%2fgoakshit.github.com%2fposts%2f2021%2f08%2fsetup-ci-cd-for-hugo-website-using-github-actions%2f" target=_blank rel=noopener aria-label title="Share on linkedin">
+<a class=resp-sharing-button__link href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fgoakshit.github.com%2fposts%2fk8s-primer-p3%2f&title=Kubernetes%3a%20Core%20Concepts%20Primer%20-%20Part%203&summary=Kubernetes%3a%20Core%20Concepts%20Primer%20-%20Part%203&source=https%3a%2f%2fgoakshit.github.com%2fposts%2fk8s-primer-p3%2f" target=_blank rel=noopener aria-label title="Share on linkedin">
 <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--small"><div aria-hidden=true class="resp-sharing-button__icon resp-sharing-button__icon--solid"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
 </div>
 </div>
 </a>
-<a class=resp-sharing-button__link href="https://reddit.com/submit/?url=https%3a%2f%2fgoakshit.github.com%2fposts%2f2021%2f08%2fsetup-ci-cd-for-hugo-website-using-github-actions%2f&resubmit=true&title=Setup%20CI-CD%20For%20Hugo%20Website%20Using%20Github%20Actions" target=_blank rel=noopener aria-label title="Share on reddit">
+<a class=resp-sharing-button__link href="https://reddit.com/submit/?url=https%3a%2f%2fgoakshit.github.com%2fposts%2fk8s-primer-p3%2f&resubmit=true&title=Kubernetes%3a%20Core%20Concepts%20Primer%20-%20Part%203" target=_blank rel=noopener aria-label title="Share on reddit">
 <div class="resp-sharing-button resp-sharing-button--reddit resp-sharing-button--small"><div aria-hidden=true class="resp-sharing-button__icon resp-sharing-button__icon--solid"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentcolor" stroke="none"><path d="M12 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0zm5.01 4.744c.688.0 1.25.561 1.25 1.249a1.25 1.25.0 01-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968.0 1.754.786 1.754 1.754.0.716-.435 1.333-1.01 1.614a3.111 3.111.0 01.042.52c0 2.694-3.13 4.87-7.004 4.87s-7.004-2.176-7.004-4.87c0-.183.015-.366.043-.534A1.748 1.748.0 014.028 12c0-.968.786-1.754 1.754-1.754.463.0.898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342.0 01.14-.197.35.35.0 01.238-.042l2.906.617a1.214 1.214.0 011.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687.0 1.248-.561 1.248-1.249S9.937 12 9.249 12zm5.5.0c-.687.0-1.248.561-1.248 1.25.0.687.561 1.248 1.249 1.248S16 13.937 16 13.249c0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327.0 00-.231.094.33.33.0 000 .463c.842.842 2.484.913 2.961.913s2.105-.056 2.961-.913a.361.361.0 00.029-.463.33.33.0 00-.464.0c-.547.533-1.684.73-2.512.73-.828.0-1.979-.196-2.512-.73a.326.326.0 00-.232-.095z"/></svg>
 </div>
 </div>
 </a>
-<a class=resp-sharing-button__link href="https://www.xing.com/app/user?op=share;url=https%3a%2f%2fgoakshit.github.com%2fposts%2f2021%2f08%2fsetup-ci-cd-for-hugo-website-using-github-actions%2f;title=Setup%20CI-CD%20For%20Hugo%20Website%20Using%20Github%20Actions" target=_blank rel=noopener aria-label title="Share on xing">
+<a class=resp-sharing-button__link href="https://www.xing.com/app/user?op=share;url=https%3a%2f%2fgoakshit.github.com%2fposts%2fk8s-primer-p3%2f;title=Kubernetes%3a%20Core%20Concepts%20Primer%20-%20Part%203" target=_blank rel=noopener aria-label title="Share on xing">
 <div class="resp-sharing-button resp-sharing-button--xing resp-sharing-button--small"><div aria-hidden=true class="resp-sharing-button__icon resp-sharing-button__icon--solid"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentcolor" stroke="none"><path d="M18.188.0c-.517.0-.741.325-.927.66.0.0-7.455 13.224-7.702 13.657.015.024 4.919 9.023 4.919 9.023.17.308.436.66.967.66h3.454c.211.0.375-.078.463-.22.089-.151.089-.346-.009-.536l-4.879-8.916c-.004-.006-.004-.016.0-.022L22.139.756c.095-.191.097-.387.006-.535C22.056.078 21.894.0 21.686.0h-3.498zM3.648 4.74c-.211.0-.385.074-.473.216-.09.149-.078.339.02.531l2.34 4.05c.004.01.004.016.0.021L1.86 16.051c-.099.188-.093.381.0.529.085.142.239.234.45.234h3.461c.518.0.766-.348.945-.667l3.734-6.609-2.378-4.155c-.172-.315-.434-.659-.962-.659H3.648v.016z"/></svg>
 </div>
 </div>
 </a>
-<a class=resp-sharing-button__link href="whatsapp://send?text=Setup%20CI-CD%20For%20Hugo%20Website%20Using%20Github%20Actions%20https%3a%2f%2fgoakshit.github.com%2fposts%2f2021%2f08%2fsetup-ci-cd-for-hugo-website-using-github-actions%2f" target=_blank rel=noopener aria-label title="Share on whatsapp">
+<a class=resp-sharing-button__link href="whatsapp://send?text=Kubernetes%3a%20Core%20Concepts%20Primer%20-%20Part%203%20https%3a%2f%2fgoakshit.github.com%2fposts%2fk8s-primer-p3%2f" target=_blank rel=noopener aria-label title="Share on whatsapp">
 <div class="resp-sharing-button resp-sharing-button--whatsapp resp-sharing-button--small"><div aria-hidden=true class="resp-sharing-button__icon resp-sharing-button__icon--solid"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentcolor" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198.0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479.0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87.0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86.0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64.0 5.122 1.03 6.988 2.898a9.825 9.825.0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815.0 0012.05.0C5.495.0.16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882.0 005.683 1.448h.005c6.554.0 11.89-5.335 11.893-11.893a11.821 11.821.0 00-3.48-8.413z"/></svg>
 </div>
 </div>
 </a>
-<a class=resp-sharing-button__link href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fgoakshit.github.com%2fposts%2f2021%2f08%2fsetup-ci-cd-for-hugo-website-using-github-actions%2f&t=Setup%20CI-CD%20For%20Hugo%20Website%20Using%20Github%20Actions" target=_blank rel=noopener aria-label title="Share on hacker news">
+<a class=resp-sharing-button__link href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fgoakshit.github.com%2fposts%2fk8s-primer-p3%2f&t=Kubernetes%3a%20Core%20Concepts%20Primer%20-%20Part%203" target=_blank rel=noopener aria-label title="Share on hacker news">
 <div class="resp-sharing-button resp-sharing-button--hackernews resp-sharing-button--small"><div aria-hidden=true class="resp-sharing-button__icon resp-sharing-button__icon--solid"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentcolor" stroke="none"><path d="M0 24V0h24v24H0zM6.951 5.896l4.112 7.708v5.064h1.583v-4.972l4.148-7.799h-1.749l-2.457 4.875c-.372.745-.688 1.434-.688 1.434s-.297-.708-.651-1.434L8.831 5.896h-1.88z"/></svg>
 </div>
 </div>
 </a>
-<a class=resp-sharing-button__link href="https://telegram.me/share/url?text=Setup%20CI-CD%20For%20Hugo%20Website%20Using%20Github%20Actions&url=https%3a%2f%2fgoakshit.github.com%2fposts%2f2021%2f08%2fsetup-ci-cd-for-hugo-website-using-github-actions%2f" target=_blank rel=noopener aria-label title="Share on telegram">
+<a class=resp-sharing-button__link href="https://telegram.me/share/url?text=Kubernetes%3a%20Core%20Concepts%20Primer%20-%20Part%203&url=https%3a%2f%2fgoakshit.github.com%2fposts%2fk8s-primer-p3%2f" target=_blank rel=noopener aria-label title="Share on telegram">
 <div class="resp-sharing-button resp-sharing-button--telegram resp-sharing-button--small"><div aria-hidden=true class="resp-sharing-button__icon resp-sharing-button__icon--solid"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
 </div>
 </div>
@@ -238,14 +249,14 @@ Copy the contents of the below yaml file.</p>
 </div>
 <div class=pagination__buttons>
 <span class="button previous">
-<a href=https://goakshit.github.com/posts/2021/08/kubernetes-core-concepts-primer-part-2/>
+<a href=https://goakshit.github.com/posts/k8s-primer-p4/>
 <span class=button__icon>←</span>
-<span class=button__text>Kubernetes: Core Concepts Primer - Part 2</span>
+<span class=button__text>Kubernetes: Core Concepts Primer - Part 4</span>
 </a>
 </span>
 <span class="button next">
-<a href=https://goakshit.github.com/posts/2021/07/kubernetes-core-concepts-primer-part-1/>
-<span class=button__text>Kubernetes: Core Concepts Primer - Part 1</span>
+<a href=https://goakshit.github.com/posts/k8s-primer-p2/>
+<span class=button__text>Kubernetes: Core Concepts Primer - Part 2</span>
 <span class=button__icon>→</span>
 </a>
 </span>
