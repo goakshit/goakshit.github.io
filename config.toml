@@ -1,13 +1,15 @@
-baseURL = "https://goakshit.github.com"
-title   = "ADs Blog"
 googleAnalytics = "UA-46466614-6"
-languageCode = "en-us"
-enableEmoji = true
 
 [module]
   [[module.imports]]
     path = "github.com/rhazdon/hugo-theme-hello-friend-ng"
     disable=false
+
+baseURL = "https://goakshit.github.com"
+enableEmoji = true
+title   = "ADs Blog"
+languageCode = "en-us"
+theme = "hello-friend-ng"
 
 PygmentsCodeFences = true
 PygmentsStyle = "monokai"
@@ -15,9 +17,6 @@ PygmentsStyle = "monokai"
 paginate  = 20
 rssLimit  = 20  # Maximum number of items in the RSS feed.
 copyright = "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License." # This message is only used by the RSS template.
-
-googleAnalytics = "G-EEQS586TBX"
-# disqusShortname = ""
 
 archetypeDir = "archetypes"
 contentDir   = "content"
@@ -38,8 +37,8 @@ disableSitemap = false
 disable404     = false
 disableHugoGeneratorInject = false
 
-# [permalinks]
-#   posts = "/posts/:year/:month/:title/"
+[permalinks]
+  posts = "/posts/:year/:month/:title/"
 
 [author]
   name = "Akshit Dhar"
@@ -61,7 +60,7 @@ disableHugoGeneratorInject = false
   # Metadata mostly used in document's head
   # 
   description = "Akshit Dhar Blog"
-  keywords = "blog,tech,golang,blockchain"
+  keywords = "blog,tech,golang"
   images = [""]
 
   # Home subtitle of the index page.
