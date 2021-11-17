@@ -22,7 +22,7 @@ To run the code, run `cargo run`. It will execute the `main.rs` file.
 
 #### Let's look at an example.
 We will create a new directory under `./src` called `greeting` which will have couple of files (`mod.rs`, `greet.rs`). The directory structure will look like as shown below:
-```
+```md
 project
 │   Cargo.toml
 └─── /src
