@@ -105,14 +105,14 @@ Code organization is an interesting topic. Whenever I start learning a new langu
 <p>To run the code, run <code>cargo run</code>. It will execute the <code>main.rs</code> file.</p>
 <h4 id=lets-look-at-an-example>Let&rsquo;s look at an example.</h4>
 <p>We will create a new directory under <code>./src</code> called <code>greeting</code> which will have couple of files (<code>mod.rs</code>, <code>greet.rs</code>). The directory structure will look like as shown below:</p>
-<pre tabindex=0><code>project
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-md data-lang=md>project
 │   Cargo.toml
 └─── /src
     │   main.rs
     └─── /greeting
         │   mod.rs
         │   greet.rs
-</code></pre><p>We want to run a function <code>hello</code> in <code>greet.rs</code> file. To do that, this <code>hello</code> function should be visible and accessible from the <code>main.rs</code> file. We need to add the following line to <code>greet.rs</code> file:</p>
+</code></pre></div><p>We want to run a function <code>hello</code> in <code>greet.rs</code> file. To do that, this <code>hello</code> function should be visible and accessible from the <code>main.rs</code> file. We need to add the following line to <code>greet.rs</code> file:</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=color:#75715e>// src/greeting/greet.rs
 </span><span style=color:#75715e></span><span style=color:#66d9ef>pub</span> <span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>hello</span>() {
     println!(<span style=color:#e6db74>&#34;Hello, world!&#34;</span>);
