@@ -7,7 +7,7 @@
 <meta name=description content="What are ConfigMaps?  A ConfigMap allows you to decouple environment-specific configuration from your container images, so that your applications are easily portable.
  Note: ConfigMap does not provide secrecy or encryption. If the data you want to store are confidential, use a Secret rather than a ConfigMap
 Imperative way to create configmaps: kubectl create configmap &amp;lt;CONFIG_NAME&amp;gt; --from-literal=&amp;lt;KEY&amp;gt;=&amp;lt;VALUE&amp;gt; kubectl create configmap &amp;lt;CONFIG_NAME&amp;gt; --from-file=&amp;lt;PATH_TO_FILE&amp;gt; Declarative way to create configmaps: # kubectl create -f &amp;lt;FILE&amp;gt; apiVersion: v1 kind: ConfigMap metadata: name: &amp;lt;CONFIG_NAME&amp;gt; data: &amp;lt;KEY&amp;gt;: &amp;lt;VALUE&amp;gt; To use config map in a pod, you need to mount it to the container.">
-<meta name=keywords content="blog,tech,golang,kubernetes,k8s-primer">
+<meta name=keywords content="blog,tech,golang,rust,kubernetes,k8s-primer">
 <meta name=robots content="noodp">
 <meta name=theme-color content>
 <link rel=canonical href=/posts/2021/08/kubernetes-core-concepts-primer-part-3/>
