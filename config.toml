@@ -39,7 +39,6 @@ disableHugoGeneratorInject = false
 
 [permalinks]
   posts = "/posts/:year/:month/:title/"
-  tags = "/tags/"
 
 [author]
   name = "Akshit Dhar"
