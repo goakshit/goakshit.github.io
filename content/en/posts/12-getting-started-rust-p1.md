@@ -1,9 +1,11 @@
 ---
 title: "Learning Rust Series: Code organization"
 slug: "rr-rust-1"
-tags: ["rust", "cargo"]
 date: 2021-11-01T10:18:22+05:30
 draft: false
+tags: 
+    - rust
+    - cargo
 ---
 > **Prerequisites**: I am hoping you have Cargo and Rust installed. If not, head to the <u>[Guide](https://doc.rust-lang.org/cargo/getting-started/installation.html).
 

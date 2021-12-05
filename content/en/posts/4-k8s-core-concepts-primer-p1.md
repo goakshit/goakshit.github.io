@@ -2,8 +2,10 @@
 title: "Kubernetes: Core Concepts Primer - Part 1"
 date: 2021-07-29T10:16:56+05:30
 slug: "k8s-primer-p1"
-tags: ["kubernetes", "k8s-primer"]
 draft: false
+tags: 
+    - kubernetes
+    - k8s-primer
 ---
 ## What is Kubernetes?
 > Kubernetes, also known as K8s, is an open-source system for automating deployment, scaling, and management of containerized applications.

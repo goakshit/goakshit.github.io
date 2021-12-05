@@ -2,8 +2,12 @@
 title: "Get Started With Minikube on MacOS"
 date: 2021-07-28T18:05:10+05:30
 slug: "minikube on macos"
-tags: ["minikube", "macos", "kubernetes", "k8s-primer"]
 draft: false
+tags: 
+    - minikube
+    - macos
+    - kubernetes
+    - k8s-primer
 ---
 ![](/img/minikube.jpeg)
 ## What is Minikube?

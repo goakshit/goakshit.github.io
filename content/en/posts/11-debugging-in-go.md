@@ -1,9 +1,12 @@
 ---
-title: "Debugging in golang"
-tags: ["go", "dlv", "debugging"]
-slug: "debugging-in-golang"
-date: 2021-09-27T10:33:57+05:30
+date: 2021-09-27 10:33:57 +05:30
 draft: false
+slug: debugging-in-golang
+tags: 
+  - go
+  - dlv
+  - debugging
+title: "Debugging in golang"
 ---
 ![](/img/debugging.jpg)
 ###### <a href='https://www.freepik.com/photos/technology'>Technology photo created by pressfoto - www.freepik.com</a>

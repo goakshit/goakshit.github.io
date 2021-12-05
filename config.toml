@@ -39,6 +39,7 @@ disableHugoGeneratorInject = false
 
 [permalinks]
   posts = "/posts/:year/:month/:title/"
+  tags = "/tags/"
 
 [author]
   name = "Akshit Dhar"
@@ -60,7 +61,7 @@ disableHugoGeneratorInject = false
   # Metadata mostly used in document's head
   # 
   description = "Akshit Dhar Blog"
-  keywords = "blog,tech,golang"
+  keywords = "blog,tech,golang,rust"
   images = [""]
 
   # Home subtitle of the index page.

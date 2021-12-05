@@ -1,9 +1,11 @@
 ---
 title: "Kubernetes: Core Concepts Primer - Part 4"
 slug: "k8s-primer-p4"
-tags: ["kubernetes", "k8s-primer"]
 date: 2021-08-07T09:42:31+05:30
 draft: false
+tags: 
+    - kubernetes
+    - k8s-primer
 ---
 ## Security Context in Kubernetes
 

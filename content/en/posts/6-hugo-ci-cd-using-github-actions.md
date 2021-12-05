@@ -1,9 +1,12 @@
 ---
 title: "Setup CI-CD For Hugo Website Using Github Actions"
 slug: "hugo ci-cd using github actions"
-tags: ["hugo", "ci-cd", "github-actions"]
 date: 2021-08-02T14:55:52+05:30
 draft: false
+tags: 
+    - hugo
+    - ci-cd
+    - github-actions
 ---
 ![](/img/6_1_ci_cd_banner.jpeg)
 ## What is CI/CD?

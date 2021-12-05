@@ -1,9 +1,11 @@
 ---
 title: "Kubernetes: Core Concepts Primer - Part 5"
 slug: "k8s-primer-p5"
-tags: ["kubernetes", "k8s-primer"]
 date: 2021-08-14T09:30:22+05:30
 draft: false
+tags: 
+  - kubernetes
+  - k8s-primer
 ---
 ## What are taints and tolerances?
 > Taints are a mechanism to add restrictions to the scheduling of pods. Tolerance is a mechanism to allow pods to be scheduled on nodes with certain conditions.
