@@ -1,15 +1,15 @@
 ---
-title: "Learning Rust Series: GREP cli app"
+title: "Learning Rust Series: GREP Lite"
 date: 2021-12-05T17:50:05+05:30
 slug: "rr-rust-2"
-draft: true
+draft: false
 toc: false
 tags:
   - cargo
   - rust
 ---
 
-In this post, I will be creating a simple grep cli application that reads lines from a file or stdin and prints the lines that contain the search string. Since it's a cli application, I need to pass arguments to this app.
+In this post, I will be creating a simple grep-lite cli application that reads lines from a file or stdin and prints the lines that contain the search string. Since it's a cli application, I need to pass arguments to this app.
 
 Let's get started.
 > I would be using couple of external dependencies to make this work. `clap` and `regex`.
@@ -52,23 +52,27 @@ Let's discuss the lines 1-6 briefly.
 - Line 3: `use std::io::BufReader;`: This is a standard library crate for buffered input/output operations.
 - Line 4: `use std::io::prelude::*;`: This is a standard library crate for input/output operations.
 - Line 5: `use regex::Regex;`: This is a crate for regular expressions.
-- Line 6: `use clap::{App, Arg};`: This is a crate for command line arguments.
+- Line 6: `use clap::{App, Arg};`: We are bringing the `App` and `Arg` structs into scope from the `clap` crate which are needed for command line applications.
 
-Now that we have the crates in scope, let's look at the `fn main`.
+Now that we have the crates in scope, let's look at the `main` function.
 ```rust
-let args = App::new("grep-lite")
-      .version("0.1.0")
-      .about("searches for the given pattern")
-      .arg(Arg::with_name("pattern")
-          .help("the pattern to search for")
-          .takes_value(true)
-          .required(true)
-      ).
-      arg(Arg::with_name("input")
-          .help("the input to search from")
-          .takes_value(true)
-          .required(false)
-      ).get_matches();
+fn main() {
+  let args = App::new("grep-lite")
+    .version("0.1.0")
+    .about("searches for the given pattern")
+    .arg(Arg::with_name("pattern")
+        .help("the pattern to search for")
+        .takes_value(true)
+        .required(true)
+    ).
+    arg(Arg::with_name("input")
+        .help("the input to search from")
+        .takes_value(true)
+        .required(false)
+    ).get_matches();
+
+  // MORE CODE FOLLOWS
+}
 ```
 
 In the code snippet above, we are using the `App` struct from the `clap` crate and creating a new application with name `grep-lite`, version `0.1.0` and adding two arguments. 
@@ -128,3 +132,9 @@ fn process_lines<T: BufRead + Sized>(reader: T, re: Regex) {
 
 That's about it. We have all the functionality in place. You can find the entire code [here](https://github.com/goakshit/samwise/blob/master/grep-lite/src/main.rs).
 
+Let test it by running the following command:
+`cargo run <PATTERN>`, ie, `cargo run hello` followed by the text in which it should be found. You can refer the image below.
+
+![](/img/13a-rust-lite-exec.png)
+
+>Thats all for this article. I hope you got some idea about using crates, regex, and creating cli apps  in Rust. 
