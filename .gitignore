@@ -1,2 +1,6 @@
 ./public
 ./resources
+
+# Works for windows apparently
+public
+resources
