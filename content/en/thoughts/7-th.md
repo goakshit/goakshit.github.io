@@ -5,6 +5,6 @@ draft: false
 comments: false
 slug: "th-7"
 ---
-#### Berlin is beautiful.
+#### Berlin is beautiful. Exciting times ahead.
 
 That's all folks.
