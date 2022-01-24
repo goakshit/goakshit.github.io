@@ -30,3 +30,4 @@ Let's look at the process.
 - On next page, you need to enter your details.
 - Click save, and review it. You have been added to waitlist. You will be notified when you get an appointment.
 
+
