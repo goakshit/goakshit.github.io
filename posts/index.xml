@@ -1,4 +1,49 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Akshit Dhar</title><link>/posts/</link><description>Recent content in Posts on Akshit Dhar</description><generator>Hugo -- gohugo.io</generator><copyright>&lt;a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0&lt;/a></copyright><lastBuildDate>Sun, 05 Dec 2021 17:50:05 +0530</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Learning Rust Series: GREP Lite</title><link>/posts/2021/12/learning-rust-series-grep-lite/</link><pubDate>Sun, 05 Dec 2021 17:50:05 +0530</pubDate><guid>/posts/2021/12/learning-rust-series-grep-lite/</guid><description>In this post, I will be creating a simple grep-lite cli application that reads lines from a file or stdin and prints the lines that contain the search string. Since it&amp;rsquo;s a cli application, I need to pass arguments to this app.
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Akshit Dhar</title><link>/posts/</link><description>Recent content in Posts on Akshit Dhar</description><generator>Hugo -- gohugo.io</generator><copyright>&lt;a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0&lt;/a></copyright><lastBuildDate>Mon, 24 Jan 2022 22:46:41 +0100</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Github: Working With multiple SSH Keys</title><link>/posts/2022/01/github-working-with-multiple-ssh-keys/</link><pubDate>Mon, 24 Jan 2022 22:46:41 +0100</pubDate><guid>/posts/2022/01/github-working-with-multiple-ssh-keys/</guid><description>In this post, I will be discussing how to work with multiple github accounts and setup SSH keys for each account.
+Let&amp;rsquo;s talk about steps on a broader level:
+Generate SSH keys for individual github account. Informing the github accounts about the keys. Testing the connection. Generate SSH keys for individual github account. To generate a SSH key, we can run ssh-keygen -t &amp;lt;ALGORITHM&amp;gt; -C &amp;lt;COMMENT&amp;gt; -f &amp;lt;FILE_NAME&amp;gt; in the terminal.</description><content type="html"><![CDATA[<p>In this post, I will be discussing how to work with multiple github accounts and setup SSH keys for each account.</p>
+<p>Let&rsquo;s talk about steps on a broader level:</p>
+<ul>
+<li>Generate SSH keys for individual github account.</li>
+<li>Informing the github accounts about the keys.</li>
+<li>Testing the connection.</li>
+</ul>
+<h3 id="generate-ssh-keys-for-individual-github-account">Generate SSH keys for individual github account.</h3>
+<p>To generate a SSH key, we can run <code>ssh-keygen -t &lt;ALGORITHM&gt; -C &lt;COMMENT&gt; -f &lt;FILE_NAME&gt;</code> in the terminal.</p>
+<pre tabindex="0"><code>ALGORITHM: dsa | ecdsa | ecdsa-sk | ed25519 | ed25519-sk | rsa
+COMMENT: This is not required but is a good practice to add. Generally, **email** is used since it is unique to an github account.
+FILE_NAME: For readability purpose. Eg: rsa_github_1
+</code></pre><p>Example: <code>ssh-keygen -t rsa -C akshit@example.com -f github_1</code></p>
+<blockquote>
+<p>Executing this command would expect us to enter a passphrase, which is optional. It&rsquo;s a good practice to set a passphrase.</p>
+</blockquote>
+<p>Once it&rsquo;s done, we can find few files created under <code>~/.ssh</code> directory. We can go to this directory using <code>cd ~/.ssh</code> . There will be two files: <code>&lt;FILE_NAME&gt;</code> and <code>&lt;FILE_NAME&gt;.pub</code>. The former file is your private key and latter is the public key.</p>
+<p>Now that we have a ssh key, we need to let our ssh-agent know about the same. We can run the command <code>ssh-add -K ~/.ssh/&lt;FILE_NAME&gt;</code>. It may ask us to enter passphrase that we entered in the previous step.</p>
+<p>Example: <code>ssh-add -K ~/.ssh/github_1</code></p>
+<p>Now, lets update the ssh config file (<code>~/.ssh/config</code>) and add following content to the file.</p>
+<pre tabindex="0"><code>Host &lt;HOST_NAME&gt;                           // This can be anything. Eg: github_acc_1
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/&lt;FILE_NAME&gt;         // This is the ssh-key that we created
+</code></pre><h3 id="informing-the-github-accounts-about-the-keys">Informing the github accounts about the keys.</h3>
+<p>This is probably the easiest step. We need to login to our github account. Follow the steps described below:</p>
+<ul>
+<li>Go to <code>Settings</code> by clicking on icon dropdown on the header.</li>
+<li>Select the <code>SSH and GPG keys</code>.</li>
+<li>Click on the <code>New SSH key</code> button.</li>
+<li>Give it any title.</li>
+<li>Copy the contents of <code>~/.ssh/&lt;FILE_NAME&gt;.pub</code> to Key Section. Then, click on <code>Add SSH key</code> button and we are done.</li>
+</ul>
+<h3 id="testing-the-connection">Testing the connection</h3>
+<p>Easiest way to test is to clone the repository. We can run the following command:
+<code>git clone &lt;HOST_NAME&gt;:&lt;ORGANISATION_NAME/USER_NAME&gt;/&lt;REPOSITORY_NAME&gt;.git</code>.</p>
+<p>Here, <code>HOST_NAME</code> is the one that we gave in ssh config file.
+Eg: <code>git clone github_acc_1:goakshit/sauron.git</code></p>
+<p>We have successfully setup ssh with github. To work with multiple github accounts, repeat 1 and 2 again. But in ssh config file, add another HOST below the existing entry.</p>
+<p>To clone a repository under different account, we just need to use appropriate HOST name. Thats all.</p>
+<blockquote>
+<p>Thanks for reading all the way through. You can refer <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/about-ssh">github docs</a> for in-depth knowledge on the topic.</p>
+</blockquote>
+]]></content></item><item><title>Learning Rust Series: GREP Lite</title><link>/posts/2021/12/learning-rust-series-grep-lite/</link><pubDate>Sun, 05 Dec 2021 17:50:05 +0530</pubDate><guid>/posts/2021/12/learning-rust-series-grep-lite/</guid><description>In this post, I will be creating a simple grep-lite cli application that reads lines from a file or stdin and prints the lines that contain the search string. Since it&amp;rsquo;s a cli application, I need to pass arguments to this app.
 Let&amp;rsquo;s get started.
 I would be using couple of external dependencies to make this work. clap and regex.
 Initialize the code. To initialize the code in rust, run cargo init.</description><content type="html"><![CDATA[<p>In this post, I will be creating a simple grep-lite cli application that reads lines from a file or stdin and prints the lines that contain the search string. Since it&rsquo;s a cli application, I need to pass arguments to this app.</p>
